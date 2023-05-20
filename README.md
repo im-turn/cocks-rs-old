@@ -57,6 +57,29 @@ println!(
     handler.total_score().percentage
 );
 ```
+&#8595;&#8595; OUTPUT &#8595;&#8595;
+```sh
+CockHandler {
+    id: Anonymous,
+    cock: CockStruct {
+        size: Size {
+            length: 5.5,
+            girth: 4.5,
+            size_type: Inches,
+        },
+        aesthetic: Normal,
+        balls: Normal,
+        shape: Cylindrical,
+        curvature: Straight,
+        circumcision: Uncircumcised,
+        veininess: Normal,
+        abnormalities: None,
+    },
+}
+Grade: C
+Score: 38
+Percentage: 63.333332
+```
 
 ## Testing
 
