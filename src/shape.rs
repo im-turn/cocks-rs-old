@@ -5,6 +5,16 @@ pub enum Shape {
     Other(String),
 }
 
+impl Shape {
+    pub fn get_shape(&self) -> &str {
+        match self {
+            Shape::Cylindrical => "Cylindrical",
+            Shape::Tapered => "Tapered",
+            Shape::Other(other) => other,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
