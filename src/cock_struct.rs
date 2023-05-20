@@ -46,28 +46,31 @@ impl CockStruct {
 }
 
 #[cfg(test)]
-use crate::{
-    Inches,
-};
+mod tests {
+    use super::*;
+    use crate::{
+        Inches,
+    };
 
-#[test]
-fn cock_struct_test() {
-    let cock = CockStruct::new(
-        Size {
-            length: 5.6,
-            girth: 4.1,
-            size_type: Inches,
-        },
-        Aesthetic::UglyButUsable,
-        Balls::PossibleCancer,
-        Shape::Other(String::from("test")),
-        Curvature::Right,
-        Circumcision::Circumcised,
-        Veininess::HealthyPumper,
-        Abnormalities::Major(
-            String::from("Active case of herpes")
-        )
-    );
+    #[test]
+    fn cock_struct_test() {
+        let cock = CockStruct::new(
+            Size {
+                length: 5.6,
+                girth: 4.1,
+                size_type: Inches,
+            },
+            Aesthetic::UglyButUsable,
+            Balls::PossibleCancer,
+            Shape::Other(String::from("test")),
+            Curvature::Right,
+            Circumcision::Circumcised,
+            Veininess::HealthyPumper,
+            Abnormalities::Major(
+                String::from("Active case of herpes")
+            )
+        );
 
-    println!("{:#?}", cock);
+        println!("{:#?}", cock);
+    }
 }

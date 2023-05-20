@@ -4,11 +4,16 @@ pub enum Circumcision{
     Uncircumcised,
 }
 
-#[test]
-fn test_circumcision_score() {
-    let circumsized = Circumcision::Circumcised;
-    let uncircumsized = Circumcision::Uncircumcised;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    assert_eq!(circumsized, Circumcision::Circumcised);
-    assert_eq!(uncircumsized, Circumcision::Uncircumcised);
+    #[test]
+    fn test_circumcision_score() {
+        let circumsized = Circumcision::Circumcised;
+        let uncircumsized = Circumcision::Uncircumcised;
+
+        assert_eq!(circumsized, Circumcision::Circumcised);
+        assert_eq!(uncircumsized, Circumcision::Uncircumcised);
+    }
 }

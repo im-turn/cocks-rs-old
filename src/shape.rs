@@ -5,13 +5,18 @@ pub enum Shape {
     Other(String),
 }
 
-#[test]
-fn test_shape() {
-    let cylindrical = Shape::Cylindrical;
-    let tapered = Shape::Tapered;
-    let other = Shape::Other(String::from("test"));
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    assert_eq!(cylindrical, Shape::Cylindrical);
-    assert_eq!(tapered, Shape::Tapered);
-    assert_eq!(other, Shape::Other(String::from("test")));
+    #[test]
+    fn test_shape() {
+        let cylindrical = Shape::Cylindrical;
+        let tapered = Shape::Tapered;
+        let other = Shape::Other(String::from("test"));
+
+        assert_eq!(cylindrical, Shape::Cylindrical);
+        assert_eq!(tapered, Shape::Tapered);
+        assert_eq!(other, Shape::Other(String::from("test")));
+    }
 }

@@ -105,32 +105,36 @@ impl Size {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-#[test]
-fn test_size_score() {
-    let size_cm = Size::from_cm(14.0, 10.0);
-    let size_in = Size::from_in(5.5, 4.0);
+    #[test]
+    fn test_size_score() {
+        let size_cm = Size::from_cm(14.0, 10.0);
+        let size_in = Size::from_in(5.5, 4.0);
 
-    assert_eq!(size_cm.score(), 5);
-    assert_eq!(size_in.score(), 5);
-}
+        assert_eq!(size_cm.score(), 5);
+        assert_eq!(size_in.score(), 5);
+    }
 
-#[test]
-fn test_size_cm_score() {
-    let size = SizeCM {
-        length: 14.0,
-        girth: 10.0,
-    };
+    #[test]
+    fn test_size_cm_score() {
+        let size = SizeCM {
+            length: 14.0,
+            girth: 10.0,
+        };
 
-    assert_eq!(size.score(), 5);
-}
+        assert_eq!(size.score(), 5);
+    }
 
-#[test]
-fn test_size_in_score() {
-    let size = SizeIN {
-        length: 5.5,
-        girth: 4.0,
-    };
+    #[test]
+    fn test_size_in_score() {
+        let size = SizeIN {
+            length: 5.5,
+            girth: 4.0,
+        };
 
-    assert_eq!(size.score(), 5);
+        assert_eq!(size.score(), 5);
+    }
 }

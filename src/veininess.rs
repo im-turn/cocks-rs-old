@@ -21,12 +21,16 @@ impl Score for Veininess {
     }
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-#[test]
-fn test_veininess_score() {
-    assert_eq!(Veininess::Invisible.score(), 1);
-    assert_eq!(Veininess::SlightPumper.score(), 2);
-    assert_eq!(Veininess::Normal.score(), 3);
-    assert_eq!(Veininess::HealthyPumper.score(), 4);
-    assert_eq!(Veininess::Juicer.score(), 5);
+    #[test]
+    fn test_veininess_score() {
+        assert_eq!(Veininess::Invisible.score(), 1);
+        assert_eq!(Veininess::SlightPumper.score(), 2);
+        assert_eq!(Veininess::Normal.score(), 3);
+        assert_eq!(Veininess::HealthyPumper.score(), 4);
+        assert_eq!(Veininess::Juicer.score(), 5);
+    }
 }

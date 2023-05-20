@@ -38,3 +38,41 @@ pub use self::{
     },
     cock_handler::CockHandler
 };
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_main() {
+        let user = ID::Anonymous;
+
+        let cock = CockStruct::new(
+            Size {
+                length: 5.5,
+                girth: 4.5,
+                size_type: Inches,
+            },
+            Aesthetic::Normal,
+            Balls::Normal,
+            Shape::Cylindrical,
+            Curvature::Straight,
+            Circumcision::Uncircumcised,
+            Veininess::Normal,
+            Abnormalities::None
+        );
+
+        let handler = CockHandler {
+            id: user,
+            cock,
+        };
+
+        println!(
+            "\n{:#?}\nGrade: {:?}\nScore: {}\nPercentage: {:?}",
+            handler,
+            handler.grade(),
+            handler.total_score().score,
+            handler.total_score().percentage
+        );
+    }
+}

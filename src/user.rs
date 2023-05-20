@@ -10,31 +10,36 @@ pub enum ID {
     User(User)
 }
 
-#[test]
-fn test_user() {
-    let user = User {
-        name: String::from("S"),
-        discord_name: String::from("test")
-    };
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    assert_eq!(user.name, "S");
-    assert_eq!(user.discord_name, String::from("test"));
-}
+    #[test]
+    fn test_user() {
+        let user = User {
+            name: String::from("S"),
+            discord_name: String::from("test")
+        };
 
-#[test]
-fn test_id() {
-    let user = User {
-        name: String::from("S"),
-        discord_name: String::from("test")
-    };
+        assert_eq!(user.name, "S");
+        assert_eq!(user.discord_name, String::from("test"));
+    }
 
-    let id = ID::User(user);
+    #[test]
+    fn test_id() {
+        let user = User {
+            name: String::from("S"),
+            discord_name: String::from("test")
+        };
 
-    match id {
-        ID::User(user) => {
-            assert_eq!(user.name, "S");
-            assert_eq!(user.discord_name, String::from("test"));
-        },
-        _ => panic!("Expected ID::User")
+        let id = ID::User(user);
+
+        match id {
+            ID::User(user) => {
+                assert_eq!(user.name, "S");
+                assert_eq!(user.discord_name, String::from("test"));
+            },
+            _ => panic!("Expected ID::User")
+        }
     }
 }

@@ -28,17 +28,22 @@ impl Abnormalities {
 }
 
 
-#[test]
-fn abnormalities_test() {
-    let major_abnormality = Abnormalities::Major(String::from("major"));
-    let minor_abnormality = Abnormalities::Minor(String::from("minor"));
-    let no_abnormality = Abnormalities::None;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    assert_eq!(major_abnormality.get_abnormality(), "major");
-    assert_eq!(minor_abnormality.get_abnormality(), "minor");
-    assert_eq!(no_abnormality.get_abnormality(), "None");
+    #[test]
+    fn abnormalities_test() {
+        let major_abnormality = Abnormalities::Major(String::from("major"));
+        let minor_abnormality = Abnormalities::Minor(String::from("minor"));
+        let no_abnormality = Abnormalities::None;
 
-    assert_eq!(major_abnormality.score(), 1);
-    assert_eq!(minor_abnormality.score(), 2);
-    assert_eq!(no_abnormality.score(), 3);
+        assert_eq!(major_abnormality.get_abnormality(), "major");
+        assert_eq!(minor_abnormality.get_abnormality(), "minor");
+        assert_eq!(no_abnormality.get_abnormality(), "None");
+
+        assert_eq!(major_abnormality.score(), 1);
+        assert_eq!(minor_abnormality.score(), 2);
+        assert_eq!(no_abnormality.score(), 3);
+    }
 }
