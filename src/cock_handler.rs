@@ -23,7 +23,7 @@ impl CockHandler {
     }
 
     pub fn total_score(&self) -> CockResult {
-        let total_possible_score: u32 = 46;
+        let total_possible_score: u32 = 60;
         let actual_score = (self.cock.aesthetic.score() + self.cock.balls.score() + self.cock.veininess.score() + self.cock.abnormalities.score() + self.cock.size.score()) as f32 * 2.0;
         let percentage_score = actual_score / total_possible_score as f32 * 100.0;
 
@@ -40,11 +40,11 @@ impl CockHandler {
 
         match score {
             94..=100 => Tier::S,
-            86..=93 => Tier::A,
-            77..=84 => Tier::B,
-            68..=76 => Tier::C,
-            58..=67 => Tier::D,
-            47..=57 => Tier::E,
+            83..=93 => Tier::A,
+            76..=82 => Tier::B,
+            61..=75 => Tier::C,
+            51..=60 => Tier::D,
+            41..=50 => Tier::E,
             _ => Tier::F,
         }
     }
