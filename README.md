@@ -1,6 +1,8 @@
 # Turn's Cock Tier Evaluator
 
-The Cock Tier Evaluator is a Rust-based library for categorizing and scoring features of the male genitalia. This is a brief overview of the functionality provided by this library.
+The Cock Tier Evaluator is a Rust-based library for categorizing and scoring features of the male genitalia. 
+
+Scoring and judgements are based on the input from the almight 'turn' himself.
 
 ## Modules
 - **tier:** Provides a classification system for the overall quality of a penis, based on its aggregate score.
@@ -83,7 +85,7 @@ Percentage: 63.333332
 
 ## Testing
 
-This library comes with a built-in test suite that verifies the functionality of the code. To run the tests, use the command cargo test in the project's root directory.
+This library comes with a built-in test suite that verifies the functionality of the code. To run the tests, use the command `cargo test` in the project's root directory.
 
 ## License
 
