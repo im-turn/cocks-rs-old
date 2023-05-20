@@ -1,6 +1,6 @@
 use crate::Score;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct SizeCM {
     pub length: f32, // in cm
     pub girth: f32, // in cm
@@ -31,7 +31,7 @@ impl Score for SizeCM {
 
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct SizeIN {
     pub length: f32, // in in
     pub girth: f32, // in in
@@ -61,7 +61,7 @@ impl Score for SizeIN {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum SizeType {
     Centimeters,
     Inches,

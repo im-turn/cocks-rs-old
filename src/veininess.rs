@@ -1,6 +1,6 @@
 use crate::Score;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Veininess {
     Invisible,
     SlightPumper,

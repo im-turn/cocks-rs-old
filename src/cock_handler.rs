@@ -5,7 +5,7 @@ use crate::{
     ID
 };
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct CockResult {
     pub score: f32,
     pub percentage: f32,

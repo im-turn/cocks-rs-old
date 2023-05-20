@@ -67,12 +67,8 @@ mod tests {
             cock,
         };
 
-        println!(
-            "\n{:#?}\nGrade: {:?}\nScore: {}\nPercentage: {:?}",
-            handler,
-            handler.grade(),
-            handler.total_score().score,
-            handler.total_score().percentage
-        );
+        assert_eq!(handler.grade(), Tier::C);
+        assert_eq!(handler.total_score().score, 38.0);
+        assert_eq!(handler.total_score().percentage, 63.333332);
     }
 }

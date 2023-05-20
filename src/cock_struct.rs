@@ -62,7 +62,9 @@ mod tests {
             },
             Aesthetic::UglyButUsable,
             Balls::PossibleCancer,
-            Shape::Other(String::from("test")),
+            Shape::Other(
+                String::from("test")
+            ),
             Curvature::Right,
             Circumcision::Circumcised,
             Veininess::HealthyPumper,
@@ -71,6 +73,15 @@ mod tests {
             )
         );
 
-        println!("{:#?}", cock);
+        assert_eq!(cock.size.length, 5.6);
+        assert_eq!(cock.size.girth, 4.1);
+        assert_eq!(cock.size.size_type, Inches);
+        assert_eq!(cock.aesthetic, Aesthetic::UglyButUsable);
+        assert_eq!(cock.balls, Balls::PossibleCancer);
+        assert_eq!(cock.shape.get_shape(), "test");
+        assert_eq!(cock.curvature, Curvature::Right);
+        assert_eq!(cock.circumcision, Circumcision::Circumcised);
+        assert_eq!(cock.veininess, Veininess::HealthyPumper);
+        assert_eq!(cock.abnormalities.get_abnormality(), "Active case of herpes");
     }
 }

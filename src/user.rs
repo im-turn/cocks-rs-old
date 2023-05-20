@@ -1,10 +1,10 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct User {
     pub name: String,
     pub discord_name: String
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum ID {
     Anonymous,
     User(User)
