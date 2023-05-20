@@ -21,3 +21,11 @@ impl Score for Aesthetic {
     }
 }
 
+#[test]
+fn test_aesthetic_score() {
+    assert_eq!(Aesthetic::Gross.score(), 1);
+    assert_eq!(Aesthetic::UglyButUsable.score(), 2);
+    assert_eq!(Aesthetic::Normal.score(), 3);
+    assert_eq!(Aesthetic::PrettyNice.score(), 4);
+    assert_eq!(Aesthetic::Perfect.score(), 5);
+}
