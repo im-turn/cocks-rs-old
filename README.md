@@ -1,16 +1,16 @@
-# Penile Tier Evaluator README
+# Turn's Cock Tier Evaluator
 
-The Penile Tier Evaluator is a Rust-based library for categorizing and scoring features of the male genitalia. This is a brief overview of the functionality provided by this library.
+The Cock Tier Evaluator is a Rust-based library for categorizing and scoring features of the male genitalia. This is a brief overview of the functionality provided by this library.
 
 ## Modules
 - **tier:** Provides a classification system for the overall quality of a penis, based on its aggregate score.
-- **traits:** Contains the Rust traits used throughout the library, including the 'Score' trait.
-- **size:** Contains functionality for measuring penis size in either inches or centimeters, with automatic unit conversion.
+- **traits:** Contains the Rust traits used throughout the library, currently just includes the 'Score' trait.
+- **size:** Contains functionality for measuring penis size in either inches or centimeters.
 - **aesthetic:** Provides a system for scoring the aesthetic appeal of a penis.
 - **balls:** Provides a system for scoring the size and shape of the testicles.
 - **shape:** Provides a system for categorizing and scoring the overall shape of a penis.
-- **curvature:** Provides a system for categorizing and scoring the curvature of a penis.
-- **circumcision:** Contains functionality for representing and scoring the circumcision status of a penis.
+- **curvature:** Provides a system for categorizing the curvature of a penis.
+- **circumcision:** Contains functionality for representing the circumcision status of a penis.
 - **veininess:** Provides a system for categorizing and scoring the veininess of a penis.
 - **abnormalities:** Contains functionality for representing and scoring any abnormalities in a penis's appearance.
 - **cock_struct:** A composite struct that combines all other aspects of a penis into a single entity.
