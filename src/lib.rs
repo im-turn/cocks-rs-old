@@ -1,29 +1,23 @@
-pub mod modules;
+mod modules;
+
+pub use modules::bin_functions as BIN;
 
 #[allow(unused_attributes, unused_imports)]
-use modules::{
-    size::{
-        Size,
-        SizeCM,
-        SizeIN,
-        SizeType::{
-            Centimeters,
-            Inches,
-        },
-    },
-    curvature::Curvature,
-    tier::Tier,
-    shape::Shape,
-    user::{User, ID},
-    circumcision::Circumcision,
-    traits::Score,
+pub use modules::{
     abnormalities::Abnormalities,
     aesthetic::Aesthetic,
     balls::Balls,
-    cock_handler::{
-        CockHandler,
-        CockResult,
-    },
+    circumcision::Circumcision,
+    cock_handler::{CockHandler, CockResult},
     cock_struct::CockStruct,
+    curvature::Curvature,
+    shape::Shape,
+    size::{
+        Size, SizeCM, SizeIN,
+        SizeType::{self, Centimeters, Inches},
+    },
+    tier::Tier,
+    traits::{GetVariants, Score, FromString},
+    user::{User, ID},
     veininess::Veininess,
 };

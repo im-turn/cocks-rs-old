@@ -1,3 +1,8 @@
+use crate::{
+    FromString,
+    GetVariants,
+};
+
 #[derive(Debug, PartialEq)]
 pub enum Tier {
     S,
@@ -7,6 +12,35 @@ pub enum Tier {
     D,
     E,
     F,
+}
+
+impl GetVariants for Tier {
+    fn get_variants() -> Vec<String> {
+        vec![
+            String::from("S"),
+            String::from("A"),
+            String::from("B"),
+            String::from("C"),
+            String::from("D"),
+            String::from("E"),
+            String::from("F"),
+        ]
+    }
+}
+
+impl FromString for Tier {
+    fn from_string(tier: &str) -> Tier {
+        match tier {
+            "S" => Tier::S,
+            "A" => Tier::A,
+            "B" => Tier::B,
+            "C" => Tier::C,
+            "D" => Tier::D,
+            "E" => Tier::E,
+            "F" => Tier::F,
+            _ => panic!("Invalid tier"),
+        }
+    }
 }
 
 #[cfg(test)]

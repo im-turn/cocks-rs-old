@@ -1,4 +1,4 @@
-use crate::Score;
+use crate::{GetVariants, Score, FromString};
 
 #[derive(Debug, PartialEq)]
 pub enum Veininess {
@@ -17,6 +17,31 @@ impl Score for Veininess {
             Veininess::Normal => 3,
             Veininess::HealthyPumper => 4,
             Veininess::Juicer => 5,
+        }
+    }
+}
+
+impl GetVariants for Veininess {
+    fn get_variants() -> Vec<String> {
+        vec![
+            String::from("Invisible"),
+            String::from("SlightPumper"),
+            String::from("Normal"),
+            String::from("HealthyPumper"),
+            String::from("Juicer"),
+        ]
+    }
+}
+
+impl FromString for Veininess {
+    fn from_string(veininess: &str) -> Veininess {
+        match veininess {
+            "Invisible" => Veininess::Invisible,
+            "SlightPumper" => Veininess::SlightPumper,
+            "Normal" => Veininess::Normal,
+            "HealthyPumper" => Veininess::HealthyPumper,
+            "Juicer" => Veininess::Juicer,
+            _ => panic!("Invalid veininess"),
         }
     }
 }

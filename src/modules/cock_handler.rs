@@ -1,9 +1,4 @@
-use crate::{
-    CockStruct,
-    Tier,
-    Score,
-    ID
-};
+use crate::{CockStruct, Score, Tier, ID};
 
 #[derive(Debug, PartialEq)]
 pub struct CockResult {
@@ -23,26 +18,34 @@ impl CockHandler {
     }
 
     pub fn total_score(&self) -> CockResult {
-        let total_possible_score: u32 = 60;
-        let actual_score = (self.cock.aesthetic.score() + self.cock.balls.score() + self.cock.veininess.score() + self.cock.abnormalities.score() + self.cock.size.score()) as f32 * 2.0;
-        let percentage_score = actual_score / total_possible_score as f32 * 100.0;
+        let actual_score = (
+            self.cock.aesthetic.score()         // 10
+            + self.cock.balls.score()           // 5
+            + self.cock.veininess.score()       // 5
+            + self.cock.abnormalities.score()   // 5
+            + self.cock.size.score()) as f32    // 10
+            * 2.0;
+
+        let total_possible_score = 70.0;
+
+        let percentage_score = actual_score / total_possible_score * 100.0;
 
         CockResult {
             score: actual_score,
-            percentage: percentage_score
+            percentage: percentage_score,
         }
     }
 
     pub fn grade(&self) -> Tier {
         let percentage_score = self.total_score().percentage;
-        
+
         let score = percentage_score as i32;
 
         match score {
-            94..=100 => Tier::S,
-            83..=93 => Tier::A,
-            76..=82 => Tier::B,
-            61..=75 => Tier::C,
+            91..=100 => Tier::S,
+            81..=90 => Tier::A,
+            71..=80 => Tier::B,
+            61..=70 => Tier::C,
             51..=60 => Tier::D,
             41..=50 => Tier::E,
             _ => Tier::F,
@@ -52,5 +55,4 @@ impl CockHandler {
 
 // add testing
 #[cfg(test)]
-mod tests {
-}
+mod tests {}

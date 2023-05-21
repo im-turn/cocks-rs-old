@@ -1,42 +1,35 @@
-pub mod tier;
-pub mod traits;
-pub mod size;
+pub mod abnormalities;
 pub mod aesthetic;
 pub mod balls;
-pub mod shape;
-pub mod curvature;
 pub mod circumcision;
-pub mod veininess;
-pub mod abnormalities;
-pub mod cock_struct;
-pub mod user;
 pub mod cock_handler;
+pub mod cock_struct;
+pub mod curvature;
+pub mod shape;
+pub mod size;
+pub mod tier;
+pub mod traits;
+pub mod user;
+pub mod veininess;
+pub mod bin_functions;
 
 pub use self::{
-    tier::Tier,
-    traits::Score,
-    size::{
-        Size,
-        SizeCM,
-        SizeIN,
-        SizeType::{
-            Centimeters,
-            Inches,
-        },
-    },
+    abnormalities::Abnormalities,
     aesthetic::Aesthetic,
     balls::Balls,
-    shape::Shape,
-    curvature::Curvature,
     circumcision::Circumcision,
-    veininess::Veininess,
-    abnormalities::Abnormalities,
+    cock_handler::CockHandler,
     cock_struct::CockStruct,
-    user::{
-        ID,
-        User
+    curvature::Curvature,
+    shape::Shape,
+    size::{
+        Size, SizeCM, SizeIN,
+        SizeType::{Centimeters, Inches},
     },
-    cock_handler::CockHandler
+    tier::Tier,
+    traits::{GetVariants, Score, FromString},
+    user::{User, ID},
+    veininess::Veininess,
 };
 
 #[cfg(test)]
@@ -59,13 +52,10 @@ mod tests {
             Curvature::Straight,
             Circumcision::Uncircumcised,
             Veininess::Normal,
-            Abnormalities::None
+            Abnormalities::None,
         );
 
-        let handler = CockHandler {
-            id: user,
-            cock,
-        };
+        let handler = CockHandler { id: user, cock };
 
         assert_eq!(handler.grade(), Tier::C);
         assert_eq!(handler.total_score().score, 38.0);

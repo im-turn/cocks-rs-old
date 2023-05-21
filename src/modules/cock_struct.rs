@@ -1,13 +1,4 @@
-use crate::{
-    Size,
-    Aesthetic,
-    Balls,
-    Shape,
-    Curvature,
-    Circumcision,
-    Veininess,
-    Abnormalities,
-};
+use crate::{Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Shape, Size, Veininess};
 
 #[derive(Debug)]
 pub struct CockStruct {
@@ -48,9 +39,7 @@ impl CockStruct {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{
-        Inches,
-    };
+    use crate::Inches;
 
     #[test]
     fn cock_struct_test() {
@@ -62,15 +51,11 @@ mod tests {
             },
             Aesthetic::UglyButUsable,
             Balls::PossibleCancer,
-            Shape::Other(
-                String::from("test")
-            ),
+            Shape::Other(String::from("test")),
             Curvature::Right,
             Circumcision::Circumcised,
             Veininess::HealthyPumper,
-            Abnormalities::Major(
-                String::from("Active case of herpes")
-            )
+            Abnormalities::Major(String::from("Active case of herpes")),
         );
 
         assert_eq!(cock.size.length, 5.6);
@@ -82,6 +67,9 @@ mod tests {
         assert_eq!(cock.curvature, Curvature::Right);
         assert_eq!(cock.circumcision, Circumcision::Circumcised);
         assert_eq!(cock.veininess, Veininess::HealthyPumper);
-        assert_eq!(cock.abnormalities.get_abnormality(), "Active case of herpes");
+        assert_eq!(
+            cock.abnormalities.get_abnormality(),
+            "Active case of herpes"
+        );
     }
 }

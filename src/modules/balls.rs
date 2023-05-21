@@ -1,4 +1,4 @@
-use crate::Score;
+use crate::{GetVariants, Score, FromString};
 
 #[derive(Debug, PartialEq)]
 pub enum Balls {
@@ -17,6 +17,31 @@ impl Score for Balls {
             Balls::Normal => 4,
             Balls::BigSwingers => 5,
             Balls::PossibleCancer => 1,
+        }
+    }
+}
+
+impl GetVariants for Balls {
+    fn get_variants() -> Vec<String> {
+        vec![
+            String::from("NonExistant"),
+            String::from("Tiny"),
+            String::from("Normal"),
+            String::from("BigSwingers"),
+            String::from("PossibleCancer"),
+        ]
+    }
+}
+
+impl FromString for Balls {
+    fn from_string(balls: &str) -> Balls {
+        match balls {
+            "NonExistant" => Balls::NonExistant,
+            "Tiny" => Balls::Tiny,
+            "Normal" => Balls::Normal,
+            "BigSwingers" => Balls::BigSwingers,
+            "PossibleCancer" => Balls::PossibleCancer,
+            _ => panic!("Invalid balls"),
         }
     }
 }

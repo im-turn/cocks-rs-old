@@ -1,4 +1,4 @@
-use crate::Score;
+use crate::{GetVariants, Score, FromString, BIN::prompt};
 
 #[derive(Debug, PartialEq)]
 pub enum Abnormalities {
@@ -10,10 +10,20 @@ pub enum Abnormalities {
 impl Score for Abnormalities {
     fn score(&self) -> u32 {
         match self {
-            Abnormalities::None => 3,
-            Abnormalities::Minor(_) => 2,
+            Abnormalities::None => 5,
+            Abnormalities::Minor(_) => 3,
             Abnormalities::Major(_) => 1,
         }
+    }
+}
+
+impl GetVariants for Abnormalities {
+    fn get_variants() -> Vec<String> {
+        vec![
+            String::from("None"),
+            String::from("Minor"),
+            String::from("Major"),
+        ]
     }
 }
 
@@ -27,6 +37,22 @@ impl Abnormalities {
     }
 }
 
+impl FromString for Abnormalities {
+    fn from_string(abnormality: &str) -> Abnormalities {
+        match abnormality {
+            "None" => Abnormalities::None,
+            "Minor" => {
+                let minor = prompt("What is the minor abnormality?");
+                Abnormalities::Minor(minor)
+            },
+            "Major" => {
+                let major = prompt("What is the major abnormality?");
+                Abnormalities::Major(major)
+            },
+            _ => panic!("Invalid abnormality"),
+        }
+    }
+}
 
 #[cfg(test)]
 mod tests {
@@ -43,7 +69,7 @@ mod tests {
         assert_eq!(no_abnormality.get_abnormality(), "None");
 
         assert_eq!(major_abnormality.score(), 1);
-        assert_eq!(minor_abnormality.score(), 2);
-        assert_eq!(no_abnormality.score(), 3);
+        assert_eq!(minor_abnormality.score(), 3);
+        assert_eq!(no_abnormality.score(), 5);
     }
 }

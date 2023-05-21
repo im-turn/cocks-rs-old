@@ -1,3 +1,9 @@
+use crate::{
+    FromString,
+    GetVariants,
+    BIN::prompt,
+};
+
 #[derive(Debug, PartialEq)]
 pub enum Curvature {
     Straight,
@@ -6,6 +12,36 @@ pub enum Curvature {
     Upwards,
     Downwards,
     Other(String),
+}
+
+impl GetVariants for Curvature {
+    fn get_variants() -> Vec<String> {
+        vec![
+            String::from("Straight"),
+            String::from("Left"),
+            String::from("Right"),
+            String::from("Upwards"),
+            String::from("Downwards"),
+            String::from("Other"),
+        ]
+    }
+}
+
+impl FromString for Curvature {
+    fn from_string(curvature: &str) -> Curvature {
+        match curvature {
+            "Straight" => Curvature::Straight,
+            "Left" => Curvature::Left,
+            "Right" => Curvature::Right,
+            "Upwards" => Curvature::Upwards,
+            "Downwards" => Curvature::Downwards,
+            "Other" => {
+                let other = prompt("What is the curvature?");
+                Curvature::Other(other)
+            },
+            _ => panic!("Invalid curvature"),
+        }
+    }
 }
 
 #[cfg(test)]

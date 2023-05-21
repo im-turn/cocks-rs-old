@@ -1,9 +1,9 @@
-use crate::Score;
+use crate::{GetVariants, Score, FromString};
 
 #[derive(Debug, PartialEq)]
 pub struct SizeCM {
     pub length: f32, // in cm
-    pub girth: f32, // in cm
+    pub girth: f32,  // in cm
 }
 
 impl Score for SizeCM {
@@ -28,13 +28,12 @@ impl Score for SizeCM {
 
         length_score + girth_score
     }
-
 }
 
 #[derive(Debug, PartialEq)]
 pub struct SizeIN {
     pub length: f32, // in in
-    pub girth: f32, // in in
+    pub girth: f32,  // in in
 }
 
 impl Score for SizeIN {
@@ -45,7 +44,7 @@ impl Score for SizeIN {
             51..=57 => 3,
             58..=70 => 4,
             71..=80 => 5,
-            _ => 1,
+            _ => 2,
         };
 
         let girth_score = match (self.girth * 10.0) as u32 {
@@ -54,7 +53,7 @@ impl Score for SizeIN {
             41..=46 => 3,
             47..=54 => 4,
             55..=63 => 5,
-            _ => 1,
+            _ => 2,
         };
 
         length_score + girth_score
@@ -65,6 +64,22 @@ impl Score for SizeIN {
 pub enum SizeType {
     Centimeters,
     Inches,
+}
+
+impl GetVariants for SizeType {
+    fn get_variants() -> Vec<String> {
+        vec![String::from("Centimeters"), String::from("Inches")]
+    }
+}
+
+impl FromString for SizeType {
+    fn from_string(size_type: &str) -> SizeType {
+        match size_type {
+            "Centimeters" => SizeType::Centimeters,
+            "Inches" => SizeType::Inches,
+            _ => panic!("Invalid size type"),
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -96,13 +111,23 @@ impl Size {
             SizeType::Centimeters => SizeCM {
                 length: self.length,
                 girth: self.girth,
-            }.score(),
+            }
+            .score(),
             SizeType::Inches => SizeIN {
                 length: self.length,
                 girth: self.girth,
-            }.score(),
+            }
+            .score(),
         }
     }
+
+    pub fn get_size(&self) -> String {
+        match self.size_type {
+            SizeType::Centimeters => format!("{}cm x {}cm", self.length, self.girth),
+            SizeType::Inches => format!("{}in x {}in", self.length, self.girth),
+        }
+    }
+
 }
 
 #[cfg(test)]
