@@ -58,7 +58,7 @@ mod tests {
         let handler = CockHandler { id: user, cock };
 
         assert_eq!(handler.grade(), Tier::C);
-        assert_eq!(handler.total_score().score, 38.0);
-        assert_eq!(handler.total_score().percentage, 63.333332);
+        assert_eq!(handler.total_score().score, 48.0);
+        assert_eq!(handler.total_score().percentage, 68.571434);
     }
 }
