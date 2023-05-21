@@ -69,6 +69,10 @@ let percentage = handler.total_score().percentage; // Returns 68.571434
 
 This library comes with a built-in test suite that verifies the functionality of the code. To run the tests, use the command `cargo test` in the project's root directory.
 
+## TODO
+
+- finish documentation
+
 ## License :clipboard: :briefcase:
 
 MIT License

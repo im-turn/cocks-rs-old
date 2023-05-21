@@ -1,3 +1,6 @@
+/// This module contains functions that are used in the binary.
+
+/// This function prompts the user for input and returns the input as a string.
 pub fn prompt(msg: &str) -> String {
     println!("{}\n", msg);
     let mut input = String::new();
@@ -13,6 +16,7 @@ pub fn prompt(msg: &str) -> String {
     input.trim().to_string()
 }
 
+/// This function parses a string to an integer.
 pub fn parse_to_int(input: &str, default: i32) -> i32 {
     match input.parse::<i32>() {
         Ok(n) => n,
@@ -20,6 +24,7 @@ pub fn parse_to_int(input: &str, default: i32) -> i32 {
     }
 }
 
+/// This function parses a string to a float.
 pub fn parse_to_float(input: &str, default: f32) -> f32 {
     match input.parse::<f32>() {
         Ok(n) => n,
@@ -27,6 +32,7 @@ pub fn parse_to_float(input: &str, default: f32) -> f32 {
     }
 }
 
+/// This function prompts the user for confirmation and returns a boolean.
 pub fn confirm(message: &str) -> bool {
     loop {
         println!("[Y/N]");
@@ -39,6 +45,7 @@ pub fn confirm(message: &str) -> bool {
     }
 }
 
+/// This function prompts the user to choose from a menu and returns the choice as a string.
 pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
     println!("Please choose an option:\n");
 
@@ -71,18 +78,15 @@ pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
 
 use crate::{GetVariants, FromString, ID, User as InnerUser, Size, SizeType};
 
-pub fn get_enum_variant<T: GetVariants + FromString>(message: &str) -> T {
+/// This function prompts the user to choose from a menu consisting of the variants of the type `T` and returns the `T` variant chosen.
+pub fn input<T: GetVariants + FromString>(message: &str) -> T {
     let choice = choose_from_menu(T::get_variants(), message);
-    T::from_string(&choice)
-}
-
-pub fn input<T: GetVariants + FromString, F>(function: F, message: &str) -> T 
-where F: FnOnce(&str) -> T {
-    let input = function(message);
+    let variant = T::from_string(&choice);
     clear_screen();
-    input
+    variant
 }
 
+/// This function is responsible for getting the user's ID parameters.
 pub fn get_user() -> ID {
     let user_type = choose_from_menu(ID::get_variants(), "ID type:");
     let user = match user_type.as_str() {
@@ -103,6 +107,7 @@ pub fn get_user() -> ID {
     user
 }
 
+/// This function is responsible for getting the cock size parameters.
 pub fn get_size() -> Size {
     let size_type = choose_from_menu(SizeType::get_variants(), "Inches or Centimeters?");
     let length = parse_to_float(prompt("Cock length:").as_str(), 0.0);
@@ -117,6 +122,7 @@ pub fn get_size() -> Size {
     size
 }
 
+/// Fn to clear terminal and reset cursor position
 pub fn clear_screen() {
     print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
 }
@@ -126,16 +132,17 @@ use crate::{
     CockStruct
 };
 
+/// Used to prompt a user for each necessary cock attribute and construct a CockStruct from them.
 pub fn cock_handler_build() -> CockHandler {
     let id = get_user();
     let size = get_size();
-    let aesthetic = input(get_enum_variant, "Choose aesthetic:");
-    let balls = input(get_enum_variant, "Choose ball size:");
-    let shape = input(get_enum_variant, "Choose cock shape:");
-    let curvature = input(get_enum_variant, "Choose curvature:");
-    let circumcision = input(get_enum_variant, "Choose cirumcision status:");
-    let veininess = input(get_enum_variant, "Choose veininess level:");
-    let abnormalities = input(get_enum_variant, "Choose abnormality:");
+    let aesthetic = input("Choose aesthetic:");
+    let balls = input("Choose ball size:");
+    let shape = input("Choose cock shape:");
+    let curvature = input("Choose curvature:");
+    let circumcision = input("Choose cirumcision status:");
+    let veininess = input("Choose veininess level:");
+    let abnormalities = input("Choose abnormality:");
 
     let cock = CockStruct {
         size,
