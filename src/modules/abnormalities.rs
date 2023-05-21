@@ -54,6 +54,16 @@ impl FromString for Abnormalities {
     }
 }
 
+impl std::fmt::Display for Abnormalities {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Abnormalities::None => write!(f, "None"),
+            Abnormalities::Minor(minor) => write!(f, "Minor: {}", minor),
+            Abnormalities::Major(major) => write!(f, "Major: {}", major),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -44,6 +44,19 @@ impl FromString for Curvature {
     }
 }
 
+impl std::fmt::Display for Curvature {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Curvature::Straight => write!(f, "Straight"),
+            Curvature::Left => write!(f, "Left"),
+            Curvature::Right => write!(f, "Right"),
+            Curvature::Upwards => write!(f, "Upwards"),
+            Curvature::Downwards => write!(f, "Downwards"),
+            Curvature::Other(other) => write!(f, "{}", other),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

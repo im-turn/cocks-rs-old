@@ -43,6 +43,20 @@ impl FromString for Tier {
     }
 }
 
+impl std::fmt::Display for Tier {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Tier::S => write!(f, "S"),
+            Tier::A => write!(f, "A"),
+            Tier::B => write!(f, "B"),
+            Tier::C => write!(f, "C"),
+            Tier::D => write!(f, "D"),
+            Tier::E => write!(f, "E"),
+            Tier::F => write!(f, "F"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

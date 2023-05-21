@@ -45,6 +45,16 @@ impl GetVariants for Shape {
     }
 }
 
+impl std::fmt::Display for Shape {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Shape::Cylindrical => write!(f, "Cylindrical"),
+            Shape::Tapered => write!(f, "Tapered"),
+            Shape::Other(other) => write!(f, "{}", other),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

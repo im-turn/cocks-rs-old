@@ -46,6 +46,18 @@ impl FromString for Veininess {
     }
 }
 
+impl std::fmt::Display for Veininess {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Veininess::Invisible => write!(f, "Invisible"),
+            Veininess::SlightPumper => write!(f, "SlightPumper"),
+            Veininess::Normal => write!(f, "Normal"),
+            Veininess::HealthyPumper => write!(f, "HealthyPumper"),
+            Veininess::Juicer => write!(f, "Juicer"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

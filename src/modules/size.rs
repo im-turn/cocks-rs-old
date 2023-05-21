@@ -130,6 +130,15 @@ impl Size {
 
 }
 
+impl std::fmt::Display for Size {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self.size_type {
+            SizeType::Centimeters => write!(f, "{}cm x {}cm", self.length, self.girth),
+            SizeType::Inches => write!(f, "{}in x {}in", self.length, self.girth),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

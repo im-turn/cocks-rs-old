@@ -25,6 +25,15 @@ impl FromString for Circumcision {
     }
 }
 
+impl std::fmt::Display for Circumcision {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Circumcision::Circumcised => write!(f, "Circumcised"),
+            Circumcision::Uncircumcised => write!(f, "Uncircumcised"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

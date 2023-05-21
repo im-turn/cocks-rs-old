@@ -66,6 +66,23 @@ impl FromString for Aesthetic {
     }
 }
 
+impl std::fmt::Display for Aesthetic {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Aesthetic::JustChopItOff => write!(f, "Just chop it off"),
+            Aesthetic::TooBigToBeFunctional => write!(f, "Too big to be functional"),
+            Aesthetic::Gross => write!(f, "Gross"),
+            Aesthetic::UglyButUsable => write!(f, "Ugly but usable"),
+            Aesthetic::KindaMediocre => write!(f, "Kinda mediocre"),
+            Aesthetic::Normal => write!(f, "Normal"),
+            Aesthetic::ABitBetterThanNormal => write!(f, "A bit better than normal"),
+            Aesthetic::NiceOne => write!(f, "Nice one"),
+            Aesthetic::Cockalicious => write!(f, "Cockalicious"),
+            Aesthetic::Perfect => write!(f, "Perfect"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

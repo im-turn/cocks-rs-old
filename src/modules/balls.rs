@@ -46,6 +46,18 @@ impl FromString for Balls {
     }
 }
 
+impl std::fmt::Display for Balls {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Balls::NonExistant => write!(f, "NonExistant"),
+            Balls::Tiny => write!(f, "Tiny"),
+            Balls::Normal => write!(f, "Normal"),
+            Balls::BigSwingers => write!(f, "BigSwingers"),
+            Balls::PossibleCancer => write!(f, "PossibleCancer"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

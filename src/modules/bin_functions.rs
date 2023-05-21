@@ -76,9 +76,16 @@ pub fn get_enum_variant<T: GetVariants + FromString>(message: &str) -> T {
     T::from_string(&choice)
 }
 
+pub fn input<T: GetVariants + FromString, F>(function: F, message: &str) -> T 
+where F: FnOnce(&str) -> T {
+    let input = function(message);
+    clear_screen();
+    input
+}
+
 pub fn get_user() -> ID {
     let user_type = choose_from_menu(ID::get_variants(), "ID type:");
-    match user_type.as_str() {
+    let user = match user_type.as_str() {
         "Anonymous" => ID::Anonymous,
         "User" => {
             let name = prompt("User Name:");
@@ -91,7 +98,9 @@ pub fn get_user() -> ID {
             )
         },
         _ => panic!("Invalid user type")
-    }
+    };
+    clear_screen();
+    user
 }
 
 pub fn get_size() -> Size {
@@ -99,9 +108,45 @@ pub fn get_size() -> Size {
     let length = parse_to_float(prompt("Cock length:").as_str(), 0.0);
     let girth = parse_to_float(prompt("Cock girth:").as_str(), 0.0);
 
-    match size_type.as_str() {
+    let size = match size_type.as_str() {
         "Inches" => Size::from_in(length, girth),
         "Centimeters" => Size::from_cm(length, girth),
         _ => panic!("Invalid size type")
-    }
+    };
+    clear_screen();
+    size
+}
+
+pub fn clear_screen() {
+    print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+}
+
+use crate::{
+    CockHandler,
+    CockStruct
+};
+
+pub fn cock_handler_build() -> CockHandler {
+    let id = get_user();
+    let size = get_size();
+    let aesthetic = input(get_enum_variant, "Choose aesthetic:");
+    let balls = input(get_enum_variant, "Choose ball size:");
+    let shape = input(get_enum_variant, "Choose cock shape:");
+    let curvature = input(get_enum_variant, "Choose curvature:");
+    let circumcision = input(get_enum_variant, "Choose cirumcision status:");
+    let veininess = input(get_enum_variant, "Choose veininess level:");
+    let abnormalities = input(get_enum_variant, "Choose abnormality:");
+
+    let cock = CockStruct {
+        size,
+        aesthetic,
+        balls,
+        shape,
+        curvature,
+        circumcision,
+        veininess,
+        abnormalities,
+    };
+
+    CockHandler { id, cock }
 }

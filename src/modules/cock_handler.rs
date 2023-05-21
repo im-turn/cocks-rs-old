@@ -53,6 +53,19 @@ impl CockHandler {
     }
 }
 
+impl std::fmt::Display for CockHandler {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let total_score = self.total_score();
+        let grade = self.grade();
+
+        writeln!(f, "ID: {}\n", self.id)?;
+        writeln!(f, "Cock Info: {}\n", self.cock)?;
+        writeln!(f, "Score: {}", total_score.score)?;
+        writeln!(f, "Percentage: {:.2}%", total_score.percentage)?;
+        write!(f, "Grade: {:?}", grade)
+    }
+}
+
 // add testing
 #[cfg(test)]
 mod tests {}
