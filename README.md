@@ -6,7 +6,7 @@ The ratings are based on cock rubrics created by turn himself!
 
 ## The Anatomy of the Evaluator :eggplant: :stethoscope:
 
-I've dissected the cock-rating task into neat, testable modules. Here's a quick breakdown of some of the most exciting ones:
+I've dissected the cock-rating task into neat, testable modules. Here's a quick breakdown:
 
 - **BIN (bin_functions.rs):** Our little helper, the BIN contains the various helper functions used throughout the application. It's also where the `cock_handler_build` function is located, which creates a `CockHandler` based on your personal input.
 - **User (user.rs):** You, the user, the cock-owner.
