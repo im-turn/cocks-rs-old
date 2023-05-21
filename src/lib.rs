@@ -10,7 +10,7 @@
 //! 
 //! # Example
 //! ```
-//! use cock_tier::{CockStruct, Size, Aesthetic, Balls, Shape, Curvature, Circumcision, Veininess, Abnormalities};
+//! use cock_tier::{CockStruct, Size, Aesthetic, Balls, Shape, Curvature, Circumcision, Veininess, Abnormalities, Inches};
 //!
 //! let cock = CockStruct::new(
 //!     Size {
