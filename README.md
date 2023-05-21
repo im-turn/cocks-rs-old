@@ -17,9 +17,9 @@ I've dissected the cock-rating task into neat, testable modules. Here's a quick 
 
 ## Getting Rated and Library Usage :open_book: :male_detective:
 
-Want to see where you stand? I'll guide you through the process.
+Want to see where you stand in the land of peen, but you're kinda a dummy?! Luckily I'm here to guide you through the process.
 
-### The Walkthrough
+### The Executable Walkthrough
 
 Just run `cargo run` from your terminal and follow the prompts. It's very straight-forward tbh. The program will ask you a series of questions about the cock in question, once the questions have run their course you get a comprehensive breakdown complete with a final grade.
 
