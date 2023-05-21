@@ -2,6 +2,12 @@
 name = "cock-tier"
 version = "0.1.0"
 edition = "2021"
+authors = ["turn"]
+description = "Measure the power level of a peen."
+readme = "README.md"
+license-file = "LICENSE"
+repository = "https://github.com/im-turn/penile-tier-evaluator"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

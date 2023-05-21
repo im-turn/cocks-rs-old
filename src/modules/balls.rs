@@ -1,5 +1,6 @@
 use crate::{GetVariants, Score, FromString};
 
+/// Balls is an enum that represents the size of the balls.
 #[derive(Debug, PartialEq)]
 pub enum Balls {
     NonExistant,
@@ -9,6 +10,7 @@ pub enum Balls {
     PossibleCancer,
 }
 
+/// The `Score` trait implementation for `Balls` provides a score value based on the balls.
 impl Score for Balls {
     fn score(&self) -> u32 {
         match self {
@@ -21,6 +23,7 @@ impl Score for Balls {
     }
 }
 
+/// The `GetVariants` trait implementation for `Balls` returns a vector of the possible variants of `Balls`.
 impl GetVariants for Balls {
     fn get_variants() -> Vec<String> {
         vec![
@@ -33,6 +36,7 @@ impl GetVariants for Balls {
     }
 }
 
+/// The `FromString` trait implementation for `Balls` returns an `Balls` variant based on the string provided.
 impl FromString for Balls {
     fn from_string(balls: &str) -> Balls {
         match balls {
@@ -46,6 +50,7 @@ impl FromString for Balls {
     }
 }
 
+/// The `Display` trait implementation for `Balls` returns a string representation of the balls.
 impl std::fmt::Display for Balls {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -58,6 +63,7 @@ impl std::fmt::Display for Balls {
     }
 }
 
+/// Unit tests for the `Balls` enum.
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -1,5 +1,6 @@
 use crate::{GetVariants, Score, FromString, BIN::prompt};
 
+/// This enum represents the different types of abnormalities of the cock.
 #[derive(Debug, PartialEq)]
 pub enum Abnormalities {
     None,
@@ -7,6 +8,7 @@ pub enum Abnormalities {
     Major(String),
 }
 
+/// The `Score` trait implementation for `Abnormalities` provides a score value based on the type of abnormality.
 impl Score for Abnormalities {
     fn score(&self) -> u32 {
         match self {
@@ -17,6 +19,7 @@ impl Score for Abnormalities {
     }
 }
 
+/// The `GetVariants` trait implementation for `Abnormalities` returns a vector of the possible variants of `Abnormalities`.
 impl GetVariants for Abnormalities {
     fn get_variants() -> Vec<String> {
         vec![
@@ -27,7 +30,9 @@ impl GetVariants for Abnormalities {
     }
 }
 
+/// Additional methods for the `Abnormalities` struct.
 impl Abnormalities {
+    /// Returns a string representation of the abnormality.
     pub fn get_abnormality(&self) -> &str {
         match self {
             Abnormalities::None => "None",
@@ -37,6 +42,7 @@ impl Abnormalities {
     }
 }
 
+/// The `FromString` trait implementation for `Abnormalities` returns an `Abnormalities` variant based on the string provided.
 impl FromString for Abnormalities {
     fn from_string(abnormality: &str) -> Abnormalities {
         match abnormality {
@@ -54,6 +60,7 @@ impl FromString for Abnormalities {
     }
 }
 
+/// The `Display` trait implementation for `Abnormalities` returns a string representation of the abnormality.
 impl std::fmt::Display for Abnormalities {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -64,6 +71,7 @@ impl std::fmt::Display for Abnormalities {
     }
 }
 
+/// Unit tests for the `Abnormalities` struct.
 #[cfg(test)]
 mod tests {
     use super::*;
