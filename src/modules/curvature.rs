@@ -4,6 +4,9 @@ use crate::{
     BIN::prompt,
 };
 
+/// Enumeration representing possible directions of curvature for a cock.
+/// This includes directions [Curvature::Straight], [Curvature::Left], [Curvature::Right], [Curvature::Upwards], [Curvature::Downwards], and [Curvature::Other].
+/// There's also an 'Other' variant that can store a custom description as a string.
 #[derive(Debug, PartialEq)]
 pub enum Curvature {
     Straight,
@@ -14,6 +17,8 @@ pub enum Curvature {
     Other(String),
 }
 
+/// Implementation of the [GetVariants] trait for [Curvature]. This enables the creation 
+/// of a vector containing all possible variants as string values.
 impl GetVariants for Curvature {
     fn get_variants() -> Vec<String> {
         vec![
@@ -27,6 +32,9 @@ impl GetVariants for Curvature {
     }
 }
 
+/// Implementation of the [FromString] trait for [Curvature]. This allows a [Curvature] instance 
+/// to be created from a string value. The [Curvature::Other] variant involves a user prompt for a 
+/// custom description.
 impl FromString for Curvature {
     fn from_string(curvature: &str) -> Curvature {
         match curvature {
@@ -44,6 +52,9 @@ impl FromString for Curvature {
     }
 }
 
+/// Implementation of the [std::fmt::Display] trait for [Curvature]. This allows a [Curvature] instance to be 
+/// converted to a string for display purposes. For the [Curvature::Other] variant, the custom description 
+/// is displayed.
 impl std::fmt::Display for Curvature {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -56,7 +67,7 @@ impl std::fmt::Display for Curvature {
         }
     }
 }
-
+/// Tests for the [Curvature] enum
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -1,13 +1,20 @@
 use crate::{GetVariants, Score, FromString};
 
+/// Struct representing a size in centimeters (cm), composed of length and girth.
 #[derive(Debug, PartialEq)]
 pub struct SizeCM {
     pub length: f32, // in cm
     pub girth: f32,  // in cm
 }
 
+/// Implementation of Score trait for SizeCM. The score is calculated based on both length and girth.
 impl Score for SizeCM {
     fn score(&self) -> u32 {
+        // Calculate scores for length and girth
+        // Scores are determined by the ranges the length and girth fall into
+        // Note: the lengths and girths are first multiplied by 10.0 to facilitate range comparison
+        // The final score is the sum of the length score and the girth score.
+
         let length_score = match (self.length * 10.0) as u32 {
             0..=90 => 1,
             91..=125 => 2,
@@ -30,12 +37,14 @@ impl Score for SizeCM {
     }
 }
 
+/// Struct representing a size in inches (in), composed of length and girth.
 #[derive(Debug, PartialEq)]
 pub struct SizeIN {
     pub length: f32, // in in
     pub girth: f32,  // in in
 }
 
+/// Implementation of Score trait for SizeIN. Similar to SizeCM, the score is calculated based on both length and girth.
 impl Score for SizeIN {
     fn score(&self) -> u32 {
         let length_score = match (self.length * 10.0) as u32 {
@@ -60,18 +69,21 @@ impl Score for SizeIN {
     }
 }
 
+/// [SizeType] is an enum that represents the type of size.
 #[derive(Debug, PartialEq)]
 pub enum SizeType {
     Centimeters,
     Inches,
 }
 
+/// The [Score] trait implementation for [SizeType] provides a score value based on the size type.
 impl GetVariants for SizeType {
     fn get_variants() -> Vec<String> {
         vec![String::from("Centimeters"), String::from("Inches")]
     }
 }
 
+/// The [FromString] trait implementation for [SizeType] returns a [SizeType] variant based on the string provided.
 impl FromString for SizeType {
     fn from_string(size_type: &str) -> SizeType {
         match size_type {
@@ -82,6 +94,7 @@ impl FromString for SizeType {
     }
 }
 
+/// [Size] is a struct that represents a size.
 #[derive(Debug)]
 pub struct Size {
     pub length: f32,
@@ -89,7 +102,9 @@ pub struct Size {
     pub size_type: SizeType,
 }
 
+/// Implementation of Score trait for Size. The score is calculated based on the size type.
 impl Size {
+    /// Function to create a Size instance from given length and girth in centimeters.
     pub fn from_cm(length: f32, girth: f32) -> Size {
         Size {
             length,
@@ -98,6 +113,7 @@ impl Size {
         }
     }
 
+    /// Function to create a Size instance from given length and girth in inches.
     pub fn from_in(length: f32, girth: f32) -> Size {
         Size {
             length,
@@ -106,6 +122,7 @@ impl Size {
         }
     }
 
+    /// Function to calculate the score of a Size instance. 
     pub fn score(&self) -> u32 {
         match self.size_type {
             SizeType::Centimeters => SizeCM {
@@ -121,6 +138,7 @@ impl Size {
         }
     }
 
+    /// Function to get the size as a string, with the appropriate unit (cm/in) depending on the size type.
     pub fn get_size(&self) -> String {
         match self.size_type {
             SizeType::Centimeters => format!("{}cm x {}cm", self.length, self.girth),
@@ -130,6 +148,7 @@ impl Size {
 
 }
 
+/// Implementation of Display trait for Size. Similar to get_size, but used for formatting.
 impl std::fmt::Display for Size {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.size_type {

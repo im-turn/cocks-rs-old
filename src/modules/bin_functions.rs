@@ -1,4 +1,4 @@
-/// This module contains functions that are used in the binary.
+/// This module contains functions that are used in operations within main.rs and other binaries.
 
 /// This function prompts the user for input and returns the input as a string.
 pub fn prompt(msg: &str) -> String {
@@ -86,7 +86,7 @@ pub fn input<T: GetVariants + FromString>(message: &str) -> T {
     variant
 }
 
-/// This function is responsible for getting the user's ID parameters.
+/// This function is responsible for getting the user's [ID] parameters.
 pub fn get_user() -> ID {
     let user_type = choose_from_menu(ID::get_variants(), "ID type:");
     let user = match user_type.as_str() {
@@ -107,7 +107,7 @@ pub fn get_user() -> ID {
     user
 }
 
-/// This function is responsible for getting the cock size parameters.
+/// This function is responsible for getting the cock [Size] parameters.
 pub fn get_size() -> Size {
     let size_type = choose_from_menu(SizeType::get_variants(), "Inches or Centimeters?");
     let length = parse_to_float(prompt("Cock length:").as_str(), 0.0);

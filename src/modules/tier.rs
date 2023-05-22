@@ -3,6 +3,7 @@ use crate::{
     GetVariants,
 };
 
+/// The [Tier] enum represents the grade given to a cock.
 #[derive(Debug, PartialEq)]
 pub enum Tier {
     S,
@@ -14,6 +15,7 @@ pub enum Tier {
     F,
 }
 
+/// The [GetVariants] trait implementation for [Tier] returns a vector of the possible variants of [Tier].
 impl GetVariants for Tier {
     fn get_variants() -> Vec<String> {
         vec![
@@ -28,6 +30,7 @@ impl GetVariants for Tier {
     }
 }
 
+/// The [FromString] trait implementation for [Tier] returns a variant of [Tier].
 impl FromString for Tier {
     fn from_string(tier: &str) -> Tier {
         match tier {
@@ -43,6 +46,7 @@ impl FromString for Tier {
     }
 }
 
+/// The [std::fmt::Display] trait implementation for [Tier] returns a string representation of the [Tier] variant.
 impl std::fmt::Display for Tier {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {

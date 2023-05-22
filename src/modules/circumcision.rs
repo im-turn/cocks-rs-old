@@ -3,18 +3,21 @@ use crate::{
     GetVariants,
 };
 
+/// [Circumcision] is an enum that represents the circumcision status of a cock.
 #[derive(Debug, PartialEq)]
 pub enum Circumcision {
     Circumcised,
     Uncircumcised,
 }
 
+/// The [GetVariants] trait implementation for [Circumcision] returns a vector of the possible variants of [Circumcision].
 impl GetVariants for Circumcision {
     fn get_variants() -> Vec<String> {
         vec![String::from("Circumcised"), String::from("Uncircumcised")]
     }
 }
 
+/// The [FromString] traits implementation for [Circumcision] returns a [Circumcision] variant.
 impl FromString for Circumcision {
     fn from_string(circumcision: &str) -> Circumcision {
         match circumcision {
@@ -25,6 +28,7 @@ impl FromString for Circumcision {
     }
 }
 
+/// The [std::fmt::Display] traits implementation for [Circumcision] returns a [std::fmt::Result].
 impl std::fmt::Display for Circumcision {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {

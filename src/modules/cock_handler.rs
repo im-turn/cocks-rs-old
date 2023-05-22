@@ -1,11 +1,15 @@
 use crate::{CockStruct, Score, Tier, ID};
 
+/// This struct encapsulates the result of a score calculation.
+/// It includes the raw score and the percentage score.
 #[derive(Debug, PartialEq)]
 pub struct CockResult {
     pub score: f32,
     pub percentage: f32,
 }
 
+/// This struct handles all operations related to the [CockStruct] entity.
+/// It keeps track of an identifier and the CockStruct itself.
 #[derive(Debug)]
 pub struct CockHandler {
     pub id: ID,
@@ -13,10 +17,14 @@ pub struct CockHandler {
 }
 
 impl CockHandler {
+    /// Constructor for a new [CockHandler]    
     pub fn new(id: ID, cock: CockStruct) -> CockHandler {
         CockHandler { id, cock }
     }
 
+    /// This method calculates the total score for the current [CockStruct].
+    /// The calculation takes into account several attributes of the [CockStruct].
+    /// It returns a [CockResult] containing the raw score and the percentage score.
     pub fn total_score(&self) -> CockResult {
         let actual_score = (
             self.cock.aesthetic.score()         // 10
@@ -36,6 +44,8 @@ impl CockHandler {
         }
     }
 
+    /// This method determines the grade for the current [CockStruct].
+    /// The grade is based on the percentage score.
     pub fn grade(&self) -> Tier {
         let percentage_score = self.total_score().percentage;
 
@@ -53,6 +63,7 @@ impl CockHandler {
     }
 }
 
+/// This implementation of [std::fmt::Display] allows a [CockHandler] to be converted to a string for easy display.
 impl std::fmt::Display for CockHandler {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let total_score = self.total_score();
@@ -66,6 +77,6 @@ impl std::fmt::Display for CockHandler {
     }
 }
 
-// add testing
+/// add testing
 #[cfg(test)]
 mod tests {}

@@ -1,5 +1,7 @@
 use crate::{GetVariants, Score, FromString};
 
+/// Represents the level of veininess of a cock.
+/// This is an enum with five possible values: [Veininess::Invisible], [Veininess::SlightPumper], [Veininess::Normal], [Veininess::HealthyPumper], and [Veininess::Juicer].
 #[derive(Debug, PartialEq)]
 pub enum Veininess {
     Invisible,
@@ -9,6 +11,8 @@ pub enum Veininess {
     Juicer,
 }
 
+/// Implementing [Score] trait for [Veininess] enum.
+/// Each veininess level corresponds to a specific score.
 impl Score for Veininess {
     fn score(&self) -> u32 {
         match self {
@@ -21,6 +25,7 @@ impl Score for Veininess {
     }
 }
 
+/// Implementing [GetVariants] for [Veininess] enum to provide the different variant options for [Veininess].
 impl GetVariants for Veininess {
     fn get_variants() -> Vec<String> {
         vec![
@@ -33,6 +38,7 @@ impl GetVariants for Veininess {
     }
 }
 
+/// Implementing [FromString] for [Veininess] enum to create a [Veininess] instance from a string.
 impl FromString for Veininess {
     fn from_string(veininess: &str) -> Veininess {
         match veininess {
@@ -46,6 +52,7 @@ impl FromString for Veininess {
     }
 }
 
+/// Implementing display trait for [Veininess] for formatted print.
 impl std::fmt::Display for Veininess {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -58,6 +65,7 @@ impl std::fmt::Display for Veininess {
     }
 }
 
+/// Tests for the [Veininess] enum
 #[cfg(test)]
 mod tests {
     use super::*;

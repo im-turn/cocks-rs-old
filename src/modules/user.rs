@@ -3,24 +3,31 @@ use crate::{
     GetVariants,
 };
 
+/// Represents a user of the cock analyzer.
+/// `name` field is the name of the user.
+/// `discord_name` field is the discord name of the user.
 #[derive(Debug, PartialEq)]
 pub struct User {
     pub name: String,
     pub discord_name: String,
 }
 
+/// Represents a unique identifier for a user.
+/// Variants include an anonymous identifier or a specific user.
 #[derive(Debug, PartialEq)]
 pub enum ID {
     Anonymous,
     User(User),
 }
 
+/// Implementing [GetVariants] for [ID] enum to provide the different variant options for [ID].
 impl GetVariants for ID {
     fn get_variants() -> Vec<String> {
         vec![String::from("Anonymous"), String::from("User")]
     }
 }
 
+/// Implementing [FromString] for [ID] enum to create an [ID] instance from a string.
 impl FromString for ID {
     fn from_string(id: &str) -> ID {
         match id {
@@ -34,6 +41,7 @@ impl FromString for ID {
     }
 }
 
+/// Implementing display trait for [ID] for formatted print.
 impl std::fmt::Display for ID {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -43,6 +51,7 @@ impl std::fmt::Display for ID {
     }
 }
 
+/// Tests for the User and ID structs
 #[cfg(test)]
 mod tests {
     use super::*;

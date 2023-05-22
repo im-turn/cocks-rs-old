@@ -4,6 +4,8 @@ use crate::{
     BIN::prompt,
 };
 
+/// Enumeration representing possible shapes for a CockStruct.
+/// The shapes include Cylindrical, Tapered and an 'Other' variant that can store a custom shape description as a string.
 #[derive(Debug, PartialEq)]
 pub enum Shape {
     Cylindrical,
@@ -12,6 +14,7 @@ pub enum Shape {
 }
 
 impl Shape {
+    /// Returns the string description of a Shape instance.
     pub fn get_shape(&self) -> &str {
         match self {
             Shape::Cylindrical => "Cylindrical",
@@ -21,6 +24,8 @@ impl Shape {
     }
 }
 
+/// Implementation of the FromString trait for Shape. This allows a Shape instance to be created from a string value.
+/// The 'Other' variant involves a user prompt for a custom shape description.
 impl FromString for Shape {
     fn from_string(shape: &str) -> Shape {
         match shape {
@@ -35,6 +40,7 @@ impl FromString for Shape {
     }
 }
 
+/// Implementation of the GetVariants trait for Shape. This enables the creation of a vector containing all possible variants as string values.
 impl GetVariants for Shape {
     fn get_variants() -> Vec<String> {
         vec![
@@ -45,6 +51,8 @@ impl GetVariants for Shape {
     }
 }
 
+/// Implementation of the Display trait for Shape. This allows a Shape instance to be converted to a string for display purposes.
+/// For the 'Other' variant, the custom shape description is displayed.
 impl std::fmt::Display for Shape {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {

@@ -1,6 +1,6 @@
 use crate::{GetVariants, Score, FromString};
 
-/// /// This enum represents different aesthetic values of a cock.
+/// /// The [Aesthetic] enum represents different aesthetic values of a cock.
 #[derive(Debug, PartialEq)]
 pub enum Aesthetic {
     JustChopItOff,
@@ -15,7 +15,7 @@ pub enum Aesthetic {
     Perfect,
 }
 
-/// The `Score` trait implementation for `Aesthetic` provides a score value based on the aesthetic.
+/// The [Score] trait implementation for [Aesthetic] provides a score value based on the aesthetic.
 impl Score for Aesthetic {
     fn score(&self) -> u32 {
         match self {
@@ -33,7 +33,7 @@ impl Score for Aesthetic {
     }
 }
 
-/// The `GetVariants` trait implementation for `Aesthetic` returns a vector of the possible variants of `Aesthetic`.
+/// The [GetVariants] trait implementation for [Aesthetic] returns a vector of the possible variants of [Aesthetic].
 impl GetVariants for Aesthetic {
     fn get_variants() -> Vec<String> {
         vec![
@@ -51,7 +51,7 @@ impl GetVariants for Aesthetic {
     }
 }
 
-/// The `FromString` trait implementation for `Aesthetic` returns an `Aesthetic` variant based on the string provided.
+/// The [FromString] trait implementation for [Aesthetic] returns an [Aesthetic] variant based on the string provided.
 impl FromString for Aesthetic {
     fn from_string(aesthetic: &str) -> Aesthetic {
         match aesthetic {
@@ -70,7 +70,7 @@ impl FromString for Aesthetic {
     }
 }
 
-/// Display implementation for `Aesthetic`.
+/// [std::fmt::Display] implementation for [Aesthetic].
 impl std::fmt::Display for Aesthetic {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -88,7 +88,7 @@ impl std::fmt::Display for Aesthetic {
     }
 }
 
-/// Unit tests for `Aesthetic`.
+/// Unit tests for [Aesthetic].
 #[cfg(test)]
 mod tests {
     use super::*;

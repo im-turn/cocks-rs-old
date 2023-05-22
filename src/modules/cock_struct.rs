@@ -1,5 +1,7 @@
 use crate::{Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Shape, Size, Veininess};
 
+/// Struct representing detailed information about a [CockStruct]. Each property of a [CockStruct]
+/// is represented by a separate field, enabling fine-grained control and accurate descriptions.
 #[derive(Debug)]
 pub struct CockStruct {
     pub size: Size,
@@ -13,6 +15,8 @@ pub struct CockStruct {
 }
 
 impl CockStruct {
+    /// Constructor for creating a new instance of [CockStruct]. 
+    /// All parameters needed to fully describe a [CockStruct] are passed in as arguments.
     pub fn new(
         size: Size,
         aesthetic: Aesthetic,
@@ -36,6 +40,7 @@ impl CockStruct {
     }
 }
 
+/// This implementation of [std::fmt::Display] allows a [CockStruct] to be converted to a string for easy display.
 impl std::fmt::Display for CockStruct {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "Size: {}", self.size)?;
