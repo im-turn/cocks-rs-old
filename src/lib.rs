@@ -35,7 +35,7 @@
 
 mod modules;
 
-pub use modules::bin_functions as BIN;
+pub use modules::bin_modules;
 
 #[allow(unused_attributes, unused_imports)]
 pub use modules::{

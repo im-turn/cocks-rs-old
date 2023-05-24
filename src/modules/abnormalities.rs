@@ -1,4 +1,9 @@
-use crate::{GetVariants, Score, FromString, BIN::prompt};
+use crate::{
+    GetVariants,
+    Score,
+    FromString,
+    bin_modules::standard_prompt::prompt
+};
 
 /// The [Abnormalities] enum represents the different types of abnormalities of the cock.
 #[derive(Debug, PartialEq)]

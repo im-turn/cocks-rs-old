@@ -1,7 +1,7 @@
 use crate::{
     FromString,
     GetVariants,
-    BIN::prompt,
+    bin_modules::standard_prompt::prompt
 };
 
 /// Enumeration representing possible directions of curvature for a cock.

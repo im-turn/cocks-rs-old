@@ -11,9 +11,13 @@ pub mod tier;
 pub mod traits;
 pub mod user;
 pub mod veininess;
-pub mod bin_functions;
+pub mod bin_modules;
 
 pub use self::{
+    bin_modules::{
+        standard_prompt,
+        tui_prompt
+    },
     abnormalities::Abnormalities,
     aesthetic::Aesthetic,
     balls::Balls,

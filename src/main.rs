@@ -1,9 +1,8 @@
-use cock_tier::{
-    BIN::cock_handler_build,
-};
+use cock_tier::bin_modules::standard_prompt;
 
 fn main() {
-    let handler = cock_handler_build();
+
+    let handler = standard_prompt::cock_handler_build();
 
     println!("{}", handler)
 }
