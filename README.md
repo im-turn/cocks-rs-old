@@ -29,7 +29,7 @@ Other binaries available include:
 
 ### The API
 
-You're a developer who sees the inherent value in this? Strange. However, it is fairly simple to do so. To begin, add the following to your `Cargo.toml` file:
+You're a developer who sees the inherent value in this? Strange. However, it is fairly simple to get started with things. To begin, add the following to your `Cargo.toml` file:
 
 ```toml
 [dependencies]
