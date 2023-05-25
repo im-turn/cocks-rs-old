@@ -15,3 +15,9 @@ pub trait GetVariants {
 pub trait FromString {
     fn from_string(string: &str) -> Self;
 }
+
+/// [TUIDisplay] is a trait for drawing screens within the TUI.
+/// The [TUIDisplay::draw] function takes a mutable reference to a [Cursive] instance as input and draws the screen.
+pub trait TUIDisplay {
+    fn draw(&self, s: &mut cursive::Cursive);
+}

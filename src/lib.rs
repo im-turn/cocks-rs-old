@@ -51,7 +51,7 @@ pub use modules::{
         SizeType::{self, Centimeters, Inches},
     },
     tier::Tier,
-    traits::{FromString, GetVariants, Score},
+    traits::{FromString, GetVariants, Score, TUIDisplay},
     user::{User as InnerUser, ID},
     veininess::Veininess,
 };
