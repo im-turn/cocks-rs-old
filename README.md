@@ -8,7 +8,7 @@ The ratings are based on cock rubrics created by turn himself!
 
 I've dissected the cock-rating task into neat, testable modules. Here's a quick breakdown:
 
-- **bin_modules (bin_modules.rs):** Our little helpers, the `bin_modules` are almost exclusively used within the operations of the executables. It's where things such as the `cock_handler_build` function is located, which creates a `CockHandler` based on your personal input during the execution of the default binary `cock-tier`/`main.rs`.
+- **bin_modules (bin_modules.rs):** Our little helpers, the `bin_modules` are exclusively used within the operations of the executables and won't be found outside of this module and the `bin` files. It's where things such as the `cock_handler_build` function is located, which creates a `CockHandler` based on your personal input during the execution of the default binary `cock-tier`/`main.rs`.
 - **User (user.rs):** You, the user, the cock-owner.
 - **CockStruct (cock_struct.rs):** Your magnificent (or not so magnificient) monument's blueprint, combining all its noteworthy aspects into a single entity.
 - **CockHandler (cock_handler.rs):** The gentle hands wrapping up the `User` and `CockStruct` to provide easy methods to calculate and print all the juicy details about your member.
@@ -24,7 +24,7 @@ Want to see where you stand in the land of peen, but you're kinda a dummy?! Luck
 To use the default cli based binary, just run `cargo run` or `cargo run --bin cock-tier` from your terminal and follow the prompts. It's very straight-forward tbh. The program will ask you a series of questions about the cock in question, once the questions have run their course you get a comprehensive breakdown complete with a final grade.
 
 Other binaries available include:
-- tui: a terminal user interface that operates similarly to the default cli binary. The user interface is produced using the `cursive` rust crate which acts as a ncurses wrapper for rust. To run this binary use the command `cargo run --bin tui`
+- tui: a terminal user interface that operates similarly to the default cli binary. The user interface is produced using the `cursive` rust crate which acts as a ncurses wrapper for rust. To run this binary use the command `cargo run --bin tui`. This is incomplete and should not be used for regular functionality at the moment, the defualt cli bin is what you should use for now.
 - TODO
 
 ### The API
@@ -33,7 +33,7 @@ You're a developer who sees the inherent value in this? Strange. However, it is 
 
 ```toml
 [dependencies]
-cock_tier = { version = "x.x", path = "../path/to/cock_tier" }
+cock-tier = "x.x.x"
 ```
 
 Below is an example of one way you could go about using API.
