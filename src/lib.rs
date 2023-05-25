@@ -35,24 +35,37 @@
 
 mod modules;
 
-pub use modules::bin_modules;
-
 #[allow(unused_attributes, unused_imports)]
 pub use modules::{
+    bin_modules,
     abnormalities::Abnormalities,
     aesthetic::Aesthetic,
     balls::Balls,
     circumcision::Circumcision,
-    cock_handler::{CockHandler, CockResult},
+    cock_handler::{
+        CockHandler,
+        CockResult
+    },
     cock_struct::CockStruct,
     curvature::Curvature,
     shape::Shape,
     size::{
         Size, SizeCM, SizeIN,
-        SizeType::{self, Centimeters, Inches},
+        SizeType::{
+            self,
+            Centimeters,
+            Inches
+        },
     },
     tier::Tier,
-    traits::{GetVariants, Score, FromString},
-    user::{User, ID},
+    traits::{
+        GetVariants,
+        Score,
+        FromString
+    },
+    user::{
+        User as InnerUser,
+        ID
+    },
     veininess::Veininess,
 };

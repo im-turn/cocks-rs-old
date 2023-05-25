@@ -76,7 +76,7 @@ pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
 }
 
 
-use crate::{GetVariants, FromString, ID, User as InnerUser, Size, SizeType};
+use crate::{GetVariants, FromString, ID, InnerUser, Size, SizeType};
 
 /// This function prompts the user to choose from a menu consisting of the variants of the type `T` and returns the `T` variant chosen.
 pub fn input<T: GetVariants + FromString>(message: &str) -> T {
