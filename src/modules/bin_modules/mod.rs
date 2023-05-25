@@ -1,4 +1,16 @@
-use crate::{CockStruct, ID, };
+use crate::{
+    CockStruct,
+    ID,
+    GetVariants,
+    Abnormalities,
+    Aesthetic,
+    Balls,
+    Circumcision,
+    Curvature,
+    Shape,
+    SizeType,
+    Veininess,
+};
 
 pub mod standard_prompt;
 pub mod tui_prompt;
@@ -40,10 +52,25 @@ impl AppState {
         AppState::Home
     }
 
+    pub fn options(&self) -> Vec<String> {
+        match self {
+            AppState::Abnormalities => Abnormalities::get_variants(),
+            AppState::Aesthetic => Aesthetic::get_variants(),
+            AppState::Balls => Balls::get_variants(),
+            AppState::Circumcision => Circumcision::get_variants(),
+            AppState::Curvature => Curvature::get_variants(),
+            AppState::Id => ID::get_variants(),
+            AppState::Shape => Shape::get_variants(),
+            AppState::Size => SizeType::get_variants(),
+            AppState::Veininess => Veininess::get_variants(),
+            _ => Vec::default()
+        }
+    }
+
     pub fn as_str(&self) -> &str {
         match self {
             AppState::Home => "Home",
-            AppState::Id => "Id",
+            AppState::Id => "ID",
             AppState::Abnormalities => "Abnormalities",
             AppState::Aesthetic => "Aesthetic",
             AppState::Balls => "Balls",

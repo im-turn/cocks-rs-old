@@ -1,4 +1,4 @@
-use cursive::Cursive;
+use cursive::{Cursive, views::{SelectView, OnEventView}, align::HAlign, event::EventResult, view::{Scrollable, Resizable}};
 
 use crate::{
     TUIDisplay,
@@ -57,6 +57,49 @@ pub fn draw_result(siv: &mut Cursive) {
     )
 }
 
+pub fn draw_options(siv: &mut Cursive) {
+    let val = siv.user_data::<UserData>().unwrap().clone();
+    let options = val.state.options();
+    let title = val.state.clone();
+    
+    let mut select = SelectView::new().h_align(HAlign::Center).autojump();
+
+    select.add_all_str(options);
+    select.set_on_submit(move |s: &mut Cursive, item: &str| {
+        let mut val = s.user_data::<UserData>().unwrap().clone();
+        val.state = val.state.next();
+        val.cock.from_str_part(title.as_str(), item);
+        s.set_user_data(val.clone());
+        s.pop_layer();
+        val.state.draw(s)
+    });
+
+    // `j` and `k` keys for navigation
+    let select = OnEventView::new(select)
+        .on_pre_event_inner('k', |s, _| {
+            let cb = s.select_up(1);
+            Some(EventResult::Consumed(Some(cb)))
+        })
+        .on_pre_event_inner('j', |s, _| {
+            let cb = s.select_down(1);
+            Some(EventResult::Consumed(Some(cb)))
+        });
+
+    siv.add_layer(Dialog::around(
+        select.scrollable().fixed_size((40, 20))).title(title.as_str())
+        .button("Prev", | s | {
+            let mut val = s.user_data::<UserData>().unwrap().clone();
+            val.state = val.state.prev();
+            s.set_user_data(val.clone());
+            s.pop_layer();
+            val.state.draw(s)
+        })
+    );
+}
+
+
+/// todo below
+
 pub fn draw_id(siv: &mut Cursive) {
     let val = siv.user_data::<UserData>().unwrap().clone();
 
@@ -74,22 +117,6 @@ pub fn draw_id(siv: &mut Cursive) {
 }
 
 pub fn draw_size(siv: &mut Cursive) {
-    let val = siv.user_data::<UserData>().unwrap().clone();
-
-    siv.add_layer(
-        Dialog::text(format!("{:#?}", val))
-        .button("Next", | s | {
-            let mut val = s.user_data::<UserData>().unwrap().clone();
-            val.state = val.state.next();
-            s.set_user_data(val.clone());
-            s.pop_layer();
-            val.state.draw(s)
-        })
-        .button("Finish", Cursive::quit)
-    )
-}
-
-pub fn draw_options(siv: &mut Cursive) {
     let val = siv.user_data::<UserData>().unwrap().clone();
 
     siv.add_layer(

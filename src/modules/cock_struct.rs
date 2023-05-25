@@ -1,5 +1,5 @@
 use crate::{
-    Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Inches, Shape, Size, Veininess,
+    Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Inches, Shape, Size, Veininess, FromString,
 };
 
 /// Struct representing detailed information about a [CockStruct]. Each property of a [CockStruct]
@@ -55,6 +55,19 @@ impl CockStruct {
             circumcision: Circumcision::Uncircumcised,
             veininess: Veininess::Normal,
             abnormalities: Abnormalities::None,
+        }
+    }
+
+    pub fn from_str_part(&mut self, part: &str, new: &str) {
+        match part {
+            "Abnormalities" => self.abnormalities = Abnormalities::from_string(new),
+            "Aesthetic" => self.aesthetic = Aesthetic::from_string(new),
+            "Balls" => self.balls = Balls::from_string(new),
+            "Circumcision" => self.circumcision = Circumcision::from_string(new),
+            "Curvature" => self.curvature = Curvature::from_string(new),
+            "Shape" => self.shape = Shape::from_string(new),
+            "Veininess" => self.veininess = Veininess::from_string(new),
+            _ => panic!("Invalid part"),
         }
     }
 }
