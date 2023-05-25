@@ -1,4 +1,4 @@
-use crate::{bin_modules::standard_prompt::prompt, FromString, GetVariants, Score};
+use crate::{FromString, GetVariants, Score};
 
 /// The [Abnormalities] enum represents the different types of abnormalities of the cock.
 #[derive(Debug, PartialEq, Clone)]
@@ -48,12 +48,10 @@ impl FromString for Abnormalities {
         match abnormality {
             "None" => Abnormalities::None,
             "Minor" => {
-                let minor = prompt("What is the minor abnormality?");
-                Abnormalities::Minor(minor)
+                Abnormalities::Minor("".to_string())
             }
             "Major" => {
-                let major = prompt("What is the major abnormality?");
-                Abnormalities::Major(major)
+                Abnormalities::Major("".to_string())
             }
             _ => panic!("Invalid abnormality"),
         }

@@ -1,4 +1,4 @@
-use crate::{bin_modules::standard_prompt::prompt, FromString, GetVariants};
+use crate::{FromString, GetVariants};
 
 /// Enumeration representing possible directions of curvature for a cock.
 /// This includes directions [Curvature::Straight], [Curvature::Left], [Curvature::Right], [Curvature::Upwards], [Curvature::Downwards], and [Curvature::Other].
@@ -40,8 +40,7 @@ impl FromString for Curvature {
             "Upwards" => Curvature::Upwards,
             "Downwards" => Curvature::Downwards,
             "Other" => {
-                let other = prompt("What is the curvature?");
-                Curvature::Other(other)
+                Curvature::Other("".to_string())
             }
             _ => panic!("Invalid curvature"),
         }

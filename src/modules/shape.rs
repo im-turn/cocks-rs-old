@@ -1,4 +1,4 @@
-use crate::{bin_modules::standard_prompt::prompt, FromString, GetVariants};
+use crate::{FromString, GetVariants};
 
 /// Enumeration representing possible shapes for a CockStruct.
 /// The shapes include Cylindrical, Tapered and an 'Other' variant that can store a custom shape description as a string.
@@ -28,8 +28,7 @@ impl FromString for Shape {
             "Cylindrical" => Shape::Cylindrical,
             "Tapered" => Shape::Tapered,
             "Other" => {
-                let other = prompt("What is the shape?");
-                Shape::Other(other)
+                Shape::Other("".to_string())
             }
             _ => panic!("Invalid shape"),
         }
