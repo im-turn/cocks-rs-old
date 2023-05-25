@@ -7,7 +7,7 @@
 //! - Assign scores based on multiple factors such as size, shape, and aesthetics.
 //! - Easily extend the functionality by adding new grading methods.
 //! - Obtain a comprehensive grading summary.
-//! 
+//!
 //! # Example
 //! ```
 //! use cock_tier::{CockStruct, Size, Aesthetic, Balls, Shape, Curvature, Circumcision, Veininess, Abnormalities, Inches};
@@ -26,10 +26,10 @@
 //!     Veininess::Normal,
 //!     Abnormalities::None,
 //! );
-//! 
+//!
 //! // Perform your operations on `cock`
 //! ```
-//! 
+//!
 //! # TODO
 //! add more examples
 
@@ -37,35 +37,21 @@ mod modules;
 
 #[allow(unused_attributes, unused_imports)]
 pub use modules::{
-    bin_modules,
     abnormalities::Abnormalities,
     aesthetic::Aesthetic,
     balls::Balls,
+    bin_modules,
     circumcision::Circumcision,
-    cock_handler::{
-        CockHandler,
-        CockResult
-    },
+    cock_handler::{CockHandler, CockResult},
     cock_struct::CockStruct,
     curvature::Curvature,
     shape::Shape,
     size::{
         Size, SizeCM, SizeIN,
-        SizeType::{
-            self,
-            Centimeters,
-            Inches
-        },
+        SizeType::{self, Centimeters, Inches},
     },
     tier::Tier,
-    traits::{
-        GetVariants,
-        Score,
-        FromString
-    },
-    user::{
-        User as InnerUser,
-        ID
-    },
+    traits::{FromString, GetVariants, Score},
+    user::{User as InnerUser, ID},
     veininess::Veininess,
 };

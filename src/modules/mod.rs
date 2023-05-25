@@ -1,6 +1,7 @@
 pub mod abnormalities;
 pub mod aesthetic;
 pub mod balls;
+pub mod bin_modules;
 pub mod circumcision;
 pub mod cock_handler;
 pub mod cock_struct;
@@ -11,4 +12,3 @@ pub mod tier;
 pub mod traits;
 pub mod user;
 pub mod veininess;
-pub mod bin_modules;

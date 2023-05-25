@@ -49,9 +49,7 @@ pub fn confirm(message: &str) -> bool {
 pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
     println!("Please choose an option:\n");
 
-    let choice_len = choices.len()
-                            .try_into()
-                            .expect("Too many choices.");
+    let choice_len = choices.len().try_into().expect("Too many choices.");
 
     for (i, choice) in choices.iter().enumerate() {
         println!("{}. {}", i + 1, choice);
@@ -70,13 +68,10 @@ pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
         }
     };
 
-    choices.get(selection)
-        .unwrap()
-        .to_string()
+    choices.get(selection).unwrap().to_string()
 }
 
-
-use crate::{GetVariants, FromString, ID, InnerUser, Size, SizeType};
+use crate::{FromString, GetVariants, InnerUser, Size, SizeType, ID};
 
 /// This function prompts the user to choose from a menu consisting of the variants of the type `T` and returns the `T` variant chosen.
 pub fn input<T: GetVariants + FromString>(message: &str) -> T {
@@ -94,14 +89,9 @@ pub fn get_user() -> ID {
         "User" => {
             let name = prompt("User Name:");
             let discord_name = prompt("Discord Name:");
-            ID::User(
-                InnerUser {
-                    name,
-                    discord_name
-                }
-            )
-        },
-        _ => panic!("Invalid user type")
+            ID::User(InnerUser { name, discord_name })
+        }
+        _ => panic!("Invalid user type"),
     };
     clear_screen();
     user
@@ -116,7 +106,7 @@ pub fn get_size() -> Size {
     let size = match size_type.as_str() {
         "Inches" => Size::from_in(length, girth),
         "Centimeters" => Size::from_cm(length, girth),
-        _ => panic!("Invalid size type")
+        _ => panic!("Invalid size type"),
     };
     clear_screen();
     size
@@ -127,10 +117,7 @@ pub fn clear_screen() {
     print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
 }
 
-use crate::{
-    CockHandler,
-    CockStruct
-};
+use crate::{CockHandler, CockStruct};
 
 /// Used to prompt a user for each necessary cock attribute and construct a CockStruct from them.
 pub fn cock_handler_build() -> CockHandler {

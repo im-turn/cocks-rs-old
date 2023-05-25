@@ -1,12 +1,9 @@
-use crate::{
-    FromString,
-    GetVariants,
-};
+use crate::{FromString, GetVariants};
 
 /// Represents a user of the cock analyzer.
 /// `name` field is the name of the user.
 /// `discord_name` field is the discord name of the user.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct User {
     pub name: String,
     pub discord_name: String,
@@ -14,7 +11,7 @@ pub struct User {
 
 /// Represents a unique identifier for a user.
 /// Variants include an anonymous identifier or a specific user.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum ID {
     Anonymous,
     User(User),

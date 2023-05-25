@@ -1,10 +1,7 @@
-use crate::{
-    FromString,
-    GetVariants,
-};
+use crate::{FromString, GetVariants};
 
 /// The [Tier] enum represents the grade given to a cock.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Tier {
     S,
     A,

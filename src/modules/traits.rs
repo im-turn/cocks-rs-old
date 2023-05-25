@@ -4,7 +4,7 @@ pub trait Score {
     fn score(&self) -> u32;
 }
 
-/// [GetVariants] is a trait for objects that have a set of variants. 
+/// [GetVariants] is a trait for objects that have a set of variants.
 /// The [GetVariants::get_variants] function returns a vector of strings, each representing a variant of the object.
 pub trait GetVariants {
     fn get_variants() -> Vec<String>;

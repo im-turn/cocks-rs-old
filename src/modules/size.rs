@@ -1,7 +1,7 @@
-use crate::{GetVariants, Score, FromString};
+use crate::{FromString, GetVariants, Score};
 
 /// Struct representing a size in centimeters (cm), composed of length and girth.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct SizeCM {
     pub length: f32, // in cm
     pub girth: f32,  // in cm
@@ -38,7 +38,7 @@ impl Score for SizeCM {
 }
 
 /// Struct representing a size in inches (in), composed of length and girth.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct SizeIN {
     pub length: f32, // in in
     pub girth: f32,  // in in
@@ -70,7 +70,7 @@ impl Score for SizeIN {
 }
 
 /// [SizeType] is an enum that represents the type of size.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum SizeType {
     Centimeters,
     Inches,
@@ -95,7 +95,7 @@ impl FromString for SizeType {
 }
 
 /// [Size] is a struct that represents a size.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Size {
     pub length: f32,
     pub girth: f32,
@@ -122,7 +122,7 @@ impl Size {
         }
     }
 
-    /// Function to calculate the score of a Size instance. 
+    /// Function to calculate the score of a Size instance.
     pub fn score(&self) -> u32 {
         match self.size_type {
             SizeType::Centimeters => SizeCM {
@@ -145,7 +145,6 @@ impl Size {
             SizeType::Inches => format!("{}in x {}in", self.length, self.girth),
         }
     }
-
 }
 
 /// Implementation of Display trait for Size. Similar to get_size, but used for formatting.

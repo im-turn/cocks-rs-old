@@ -1,8 +1,10 @@
-use crate::{Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Shape, Size, Veininess};
+use crate::{
+    Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Inches, Shape, Size, Veininess,
+};
 
 /// Struct representing detailed information about a [CockStruct]. Each property of a [CockStruct]
 /// is represented by a separate field, enabling fine-grained control and accurate descriptions.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct CockStruct {
     pub size: Size,
     pub aesthetic: Aesthetic,
@@ -15,7 +17,7 @@ pub struct CockStruct {
 }
 
 impl CockStruct {
-    /// Constructor for creating a new instance of [CockStruct]. 
+    /// Constructor for creating a new instance of [CockStruct].
     /// All parameters needed to fully describe a [CockStruct] are passed in as arguments.
     pub fn new(
         size: Size,
@@ -36,6 +38,23 @@ impl CockStruct {
             circumcision,
             veininess,
             abnormalities,
+        }
+    }
+
+    pub fn default() -> CockStruct {
+        CockStruct {
+            size: Size {
+                length: 0.0,
+                girth: 0.0,
+                size_type: Inches,
+            },
+            aesthetic: Aesthetic::Normal,
+            balls: Balls::Normal,
+            shape: Shape::Other(String::from("")),
+            curvature: Curvature::Other(String::from("")),
+            circumcision: Circumcision::Uncircumcised,
+            veininess: Veininess::Normal,
+            abnormalities: Abnormalities::None,
         }
     }
 }
