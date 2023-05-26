@@ -1,13 +1,10 @@
-use cursive::{Cursive, views::{SelectView, OnEventView}, align::HAlign, event::EventResult, view::{Scrollable, Resizable}};
+use cursive::{Cursive, views::{Dialog, SelectView, OnEventView}, align::HAlign, event::EventResult, view::{Scrollable, Resizable}};
 
 use crate::{
-    TUIDisplay,
+    TUIDisplay, GetVariants,
     bin_modules::AppState,
-    CockHandler,
+    CockHandler, ID, InnerUser, modules::user
 };
-
-
-use cursive::views::Dialog;
 
 use super::UserData;
 
@@ -97,28 +94,48 @@ pub fn draw_options(siv: &mut Cursive) {
     );
 }
 
-
-/// todo below
-/// function should act similarly to draw_options for the
-/// selection of an ID type. If the user selects `User`, and
-/// not "Anonymous", then the user should be prompted for
-/// their username and discord username, which should then
-/// be stored in the UserData struct under the `user` field.
 pub fn draw_id(siv: &mut Cursive) {
-    // placeholder functionality
-    let val = siv.user_data::<UserData>().unwrap().clone();
-
-    siv.add_layer(
-        Dialog::text(format!("{:#?}", val))
-        .button("Next", | s | {
+    let options = ID::get_variants();
+    let mut select = SelectView::new().h_align(HAlign::Center).autojump();
+    select.add_all_str(options);
+    select.set_on_submit(move |s: &mut Cursive, item: &str| {
+        if item == "User" {
+            s.add_layer(
+                Dialog::around(
+                    cursive::views::EditView::new()
+                        .on_submit(|s, username| {
+                            let username = username.clone().to_string();
+                            s.pop_layer();
+                            s.add_layer(
+                                Dialog::around(
+                                    cursive::views::EditView::new()
+                                        .on_submit(move |s, discord_username| {
+                                            let mut val = s.user_data::<UserData>().unwrap().clone();
+                                            val.user = ID::User(InnerUser {
+                                                name: username.clone(),
+                                                discord_name: discord_username.to_string(),
+                                            });
+                                            val.state = val.state.next();
+                                            s.set_user_data(val.clone());
+                                            s.pop_layer();
+                                            val.state.draw(s);
+                                        })
+                                ).title("Input Discord Username")
+                            );
+                        })
+                ).title("Input Username")
+            );
+        } else {
+            // For anonymous user, just advance to the next state
             let mut val = s.user_data::<UserData>().unwrap().clone();
+            val.user = ID::Anonymous;
             val.state = val.state.next();
             s.set_user_data(val.clone());
             s.pop_layer();
             val.state.draw(s)
-        })
-        .button("Finish", Cursive::quit)
-    )
+        }
+    });
+    siv.add_layer(Dialog::around(select).title("ID Type"));
 }
 
 /// todo below
