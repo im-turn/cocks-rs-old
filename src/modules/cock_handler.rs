@@ -69,8 +69,8 @@ impl std::fmt::Display for CockHandler {
         let total_score = self.total_score();
         let grade = self.grade();
 
-        writeln!(f, "ID: {}\n", self.id)?;
-        writeln!(f, "Cock Info: {}\n", self.cock)?;
+        writeln!(f, "--- ID ---\n{}\n", self.id)?;
+        writeln!(f, "--- Cock Info ---\n{}\n", self.cock)?;
         writeln!(f, "Score: {}", total_score.score)?;
         writeln!(f, "Percentage: {:.2}%", total_score.percentage)?;
         write!(f, "Grade: {:?}", grade)

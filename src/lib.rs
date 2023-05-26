@@ -47,7 +47,7 @@ pub use modules::{
     curvature::Curvature,
     shape::Shape,
     size::{
-        Size, SizeCM, SizeIN,
+        Size,
         SizeType::{self, Centimeters, Inches},
     },
     tier::Tier,

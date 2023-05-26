@@ -99,8 +99,13 @@ pub fn draw_options(siv: &mut Cursive) {
 
 
 /// todo below
-
+/// function should act similarly to draw_options for the
+/// selection of an ID type. If the user selects `User`, and
+/// not "Anonymous", then the user should be prompted for
+/// their username and discord username, which should then
+/// be stored in the UserData struct under the `user` field.
 pub fn draw_id(siv: &mut Cursive) {
+    // placeholder functionality
     let val = siv.user_data::<UserData>().unwrap().clone();
 
     siv.add_layer(
@@ -116,7 +121,15 @@ pub fn draw_id(siv: &mut Cursive) {
     )
 }
 
+/// todo below
+/// function should act similarly to draw_options, however,
+/// it should allow for manual input of the data after selecting
+/// the `SizeType` which should be either `Inches` or `Centimeters`.
+/// The use should then be prompted for the data in the form of a
+/// float, which should then be stored in the UserData struct under
+/// the `cock` field using
 pub fn draw_size(siv: &mut Cursive) {
+    // placeholder functionality
     let val = siv.user_data::<UserData>().unwrap().clone();
 
     siv.add_layer(
@@ -132,7 +145,12 @@ pub fn draw_size(siv: &mut Cursive) {
     )
 }
 
+/// todo below
+/// function should act similarly to draw_options, however,
+/// it should allow for manual input of the data when the
+/// variant selected is "Other"
 pub fn draw_manual_options(siv: &mut Cursive) {
+    // placeholder functionality
     let val = siv.user_data::<UserData>().unwrap().clone();
 
     siv.add_layer(

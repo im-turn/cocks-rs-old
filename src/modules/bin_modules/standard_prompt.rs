@@ -32,19 +32,6 @@ pub fn parse_to_float(input: &str, default: f32) -> f32 {
     }
 }
 
-/// This function prompts the user for confirmation and returns a boolean.
-pub fn confirm(message: &str) -> bool {
-    loop {
-        println!("[Y/N]");
-        let response = prompt(message);
-        match response.to_uppercase().as_str() {
-            "Y" => return true,
-            "N" => return false,
-            _ => println!("Invalid response."),
-        }
-    }
-}
-
 /// This function prompts the user to choose from a menu and returns the choice as a string.
 pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
     println!("Please choose an option:\n");
