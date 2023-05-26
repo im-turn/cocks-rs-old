@@ -104,7 +104,7 @@ pub fn draw_id(siv: &mut Cursive) {
                 Dialog::around(
                     cursive::views::EditView::new()
                         .on_submit(|s, username| {
-                            let username = username.clone().to_string();
+                            let username = username.to_string();
                             s.pop_layer();
                             s.add_layer(
                                 Dialog::around(
