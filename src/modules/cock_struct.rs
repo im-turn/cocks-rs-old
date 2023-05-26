@@ -76,13 +76,13 @@ impl CockStruct {
 impl std::fmt::Display for CockStruct {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "Size: {}", self.size)?;
-        writeln!(f, "Aesthetic: {:?}", self.aesthetic)?;
-        writeln!(f, "Balls: {:?}", self.balls)?;
-        writeln!(f, "Shape: {:?}", self.shape)?;
-        writeln!(f, "Curvature: {:?}", self.curvature)?;
-        writeln!(f, "Circumcision: {:?}", self.circumcision)?;
-        writeln!(f, "Veininess: {:?}", self.veininess)?;
-        write!(f, "Abnormalities: {:?}", self.abnormalities)
+        writeln!(f, "Aesthetic: {}", self.aesthetic)?;
+        writeln!(f, "Balls: {}", self.balls)?;
+        writeln!(f, "Shape: {}", self.shape)?;
+        writeln!(f, "Curvature: {}", self.curvature)?;
+        writeln!(f, "Circumcision: {}", self.circumcision)?;
+        writeln!(f, "Veininess: {}", self.veininess)?;
+        write!(f, "Abnormalities: {}", self.abnormalities)
     }
 }
 
