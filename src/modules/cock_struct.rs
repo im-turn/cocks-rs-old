@@ -41,6 +41,7 @@ impl CockStruct {
         }
     }
 
+    /// Constructor for creating a new instance of [CockStruct] with the 'default' values.
     pub fn default() -> CockStruct {
         CockStruct {
             size: Size {
@@ -58,6 +59,9 @@ impl CockStruct {
         }
     }
 
+    /// Function for editing an existing instance of a [CockStruct] value.
+    /// The `part` parameter is used to specify which part of the [CockStruct] to edit.
+    /// The `new` parameter is used to specify the new value of the part.
     pub fn from_str_part(&mut self, part: &str, new: &str) {
         match part {
             "Abnormalities" => self.abnormalities = Abnormalities::from_string(new),
@@ -71,6 +75,11 @@ impl CockStruct {
         }
     }
 
+    /// Function for editing an existing instance of a [CockStruct] value.
+    /// The `item` parameter is used to verify whether the current [CockStruct] value requires a user submitted value.
+    /// [Abnormalities::Major], [Abnormalities::Minor], [Shape::Other], and [Curvature::Other] all require a user submitted value.
+    /// The `part` parameter is used to specify which part of the [CockStruct] to edit ("Abnormalities", "Shape", "Curvature").
+    /// The `new` parameter is used to specify the new value of the part.
     pub fn get_custom(&mut self, part: &str, item: &str, new: &str) {
         match item {
             "Major" => self.abnormalities = Abnormalities::Major(new.to_string()),
@@ -89,6 +98,7 @@ impl CockStruct {
 
 /// This implementation of [std::fmt::Display] allows a [CockStruct] to be converted to a string for easy display.
 impl std::fmt::Display for CockStruct {
+    /// Returns a string representation of a [CockStruct].
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "Size: {}", self.size)?;
         writeln!(f, "Aesthetic: {}", self.aesthetic)?;

@@ -52,6 +52,7 @@ impl FromString for Balls {
 
 /// The [std::fmt::Display] trait implementation for [Balls] returns a string representation of the balls.
 impl std::fmt::Display for Balls {
+    /// Returns a string representation of the [Balls] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Balls::NonExistant => write!(f, "NonExistant"),

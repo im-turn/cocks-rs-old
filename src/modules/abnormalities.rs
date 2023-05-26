@@ -60,6 +60,7 @@ impl FromString for Abnormalities {
 
 /// The [std::fmt::Display] trait implementation for [Abnormalities] returns a string representation of the abnormality.
 impl std::fmt::Display for Abnormalities {
+    /// Returns a string representation of the [Abnormalities] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Abnormalities::None => write!(f, "None"),

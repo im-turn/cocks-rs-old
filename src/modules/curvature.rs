@@ -1,8 +1,8 @@
 use crate::{FromString, GetVariants};
 
-/// Enumeration representing possible directions of curvature for a cock.
+/// Enum representing the direction of [Curvature] for a cock.
 /// This includes directions [Curvature::Straight], [Curvature::Left], [Curvature::Right], [Curvature::Upwards], [Curvature::Downwards], and [Curvature::Other].
-/// There's also an 'Other' variant that can store a custom description as a string.
+/// There's also an [Curvature::Other] variant that can store a custom description as a string.
 #[derive(Debug, PartialEq, Clone)]
 pub enum Curvature {
     Straight,
@@ -51,6 +51,7 @@ impl FromString for Curvature {
 /// converted to a string for display purposes. For the [Curvature::Other] variant, the custom description
 /// is displayed.
 impl std::fmt::Display for Curvature {
+    /// Returns the string description of a [Curvature] instance.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Curvature::Straight => write!(f, "Straight"),

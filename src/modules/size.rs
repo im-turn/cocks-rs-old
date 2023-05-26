@@ -1,6 +1,6 @@
 use crate::{FromString, GetVariants, Score};
 
-/// [SizeType] is an enum that represents the type of size.
+/// [SizeType] is an enum that represents the metric of measurement for the cocks [Size]
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum SizeType {
     Centimeters,
@@ -25,7 +25,7 @@ impl FromString for SizeType {
     }
 }
 
-/// [Size] is a struct that represents a size.
+/// [Size] is a struct that represents the size of a cock.
 #[derive(Debug, Clone)]
 pub struct Size {
     pub length: f32,
@@ -33,7 +33,7 @@ pub struct Size {
     pub size_type: SizeType,
 }
 
-/// Implementation of Score trait for Size. The score is calculated based on the size type.
+/// Implementation of [Score] trait for [Size]. The score is calculated based on the size type.
 impl Size {
     /// Function to create a Size instance from given length and girth in centimeters.
     pub fn from_cm(length: f32, girth: f32) -> Size {
@@ -44,7 +44,7 @@ impl Size {
         }
     }
 
-    /// Function to create a Size instance from given length and girth in inches.
+    /// Function to create a [Size] instance from given length and girth in inches.
     pub fn from_in(length: f32, girth: f32) -> Size {
         Size {
             length,
@@ -55,7 +55,7 @@ impl Size {
 }
 
 impl Score for Size {
-    /// Function to calculate the score of a Size instance.
+    /// Function to calculate the score of a [Size] instance.
     fn score(&self) -> u32 {
         match self {
             Size {
@@ -110,17 +110,13 @@ impl Score for Size {
     }
 }
 
-/// Implementation of Display trait for Size. Similar to get_size, but used for formatting.
+/// Implementation of [std::fmt::Display] trait for [Size].
 impl std::fmt::Display for Size {
+    /// Function to format the [Size] instance.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.size_type {
             SizeType::Centimeters => write!(f, "{}cm x {}cm", self.length, self.girth),
             SizeType::Inches => write!(f, "{}in x {}in", self.length, self.girth),
         }
     }
-}
-
-#[cfg(test)]
-mod tests {
-
 }

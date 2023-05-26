@@ -27,6 +27,7 @@ impl FromString for Circumcision {
 
 /// The [std::fmt::Display] traits implementation for [Circumcision] returns a [std::fmt::Result].
 impl std::fmt::Display for Circumcision {
+    /// Returns a string representation of the [Circumcision] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Circumcision::Circumcised => write!(f, "Circumcised"),

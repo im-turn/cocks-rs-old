@@ -1,6 +1,6 @@
 use crate::{FromString, GetVariants, Score};
 
-/// Represents the level of veininess of a cock.
+/// Represents the level of [Veininess] of a cock.
 /// This is an enum with five possible values: [Veininess::Invisible], [Veininess::SlightPumper], [Veininess::Normal], [Veininess::HealthyPumper], and [Veininess::Juicer].
 #[derive(Debug, PartialEq, Clone)]
 pub enum Veininess {
@@ -12,7 +12,7 @@ pub enum Veininess {
 }
 
 /// Implementing [Score] trait for [Veininess] enum.
-/// Each veininess level corresponds to a specific score.
+/// Each [Veininess] level corresponds to a specific score.
 impl Score for Veininess {
     fn score(&self) -> u32 {
         match self {
@@ -54,6 +54,7 @@ impl FromString for Veininess {
 
 /// Implementing display trait for [Veininess] for formatted print.
 impl std::fmt::Display for Veininess {
+    /// Returns a string representation of the [Veininess] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Veininess::Invisible => write!(f, "Invisible"),

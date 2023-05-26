@@ -9,6 +9,8 @@ use crate::{
 
 use super::UserData;
 
+/// [TUIDisplay] implementation for [AppState]
+/// Repsonsible for drawing each screen.
 impl TUIDisplay for AppState {
     fn draw(&self, s: &mut Cursive) {
         match self {
@@ -24,6 +26,7 @@ impl TUIDisplay for AppState {
     }
 }
 
+/// Function to draw the [AppState::Home] screen.
 pub fn draw_home(siv: &mut Cursive) {
     siv.add_layer(
         Dialog::text("Welcome to Turn's Cock Tier Evaluator")
@@ -37,24 +40,19 @@ pub fn draw_home(siv: &mut Cursive) {
     )
 }
 
+/// Function to draw the [AppState::Result] screen.
 pub fn draw_result(siv: &mut Cursive) {
     let val = siv.user_data::<UserData>().unwrap().clone();
     let handler = CockHandler::new(val.user, val.cock);
-
+    siv.pop_layer();
     siv.add_layer(
         Dialog::text(format!("{handler}"))
         .title("COCK RESULTS")
-        .button("Next", | s | {
-            let mut val = s.user_data::<UserData>().unwrap().clone();
-            val.state = val.state.next();
-            s.set_user_data(val.clone());
-            s.pop_layer();
-            val.state.draw(s)
-        })
         .button("Finish", Cursive::quit)
     )
 }
 
+/// Function to draw an [AppState] which doesnt require manual user input. 
 pub fn draw_options(siv: &mut Cursive) {
     let val = siv.user_data::<UserData>().unwrap().clone();
     let options = val.state.options();
@@ -95,6 +93,7 @@ pub fn draw_options(siv: &mut Cursive) {
     );
 }
 
+/// Function to draw the [AppState::Id] screen.
 pub fn draw_id(siv: &mut Cursive) {
     let options = ID::get_variants();
     let mut select = SelectView::new().h_align(HAlign::Center).autojump();
@@ -152,6 +151,7 @@ pub fn draw_id(siv: &mut Cursive) {
     siv.add_layer(Dialog::around(select).title("ID Type"));
 }
 
+/// Function to draw the [AppState::Size] screen.
 pub fn draw_size(siv: &mut Cursive) {
     let options = SizeType::get_variants();
     let mut select = SelectView::new().h_align(HAlign::Center).autojump();
@@ -214,6 +214,7 @@ pub fn draw_size(siv: &mut Cursive) {
     siv.add_layer(Dialog::around(select).title("Size Type"));
 }
 
+/// Function to draw an error popup with the given message, returning to the previous state when the "Ok" button is pressed.
 pub fn draw_error(siv: &mut Cursive, error: &str) {
     siv.add_layer(
         Dialog::text(error)
@@ -225,6 +226,7 @@ pub fn draw_error(siv: &mut Cursive, error: &str) {
     )
 }
 
+/// Function to draw an [AppState] which may possibly require manual input of an option.
 pub fn draw_manual_options(siv: &mut Cursive) {
     let state = siv.user_data::<UserData>().unwrap().state.clone();
     let options = state.options();
@@ -238,6 +240,7 @@ pub fn draw_manual_options(siv: &mut Cursive) {
                 Dialog::around(
                     cursive::views::EditView::new()
                         .on_submit(move |s, custom_input| {
+                            s.pop_layer();
                             let custom_option = custom_input.to_string();
                             let mut val = s.user_data::<UserData>().unwrap().clone();
                             val.cock.get_custom(state.as_str(), &i, &custom_option);

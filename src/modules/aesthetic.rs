@@ -72,6 +72,7 @@ impl FromString for Aesthetic {
 
 /// [std::fmt::Display] implementation for [Aesthetic].
 impl std::fmt::Display for Aesthetic {
+    /// Returns a string representation of the [Aesthetic] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Aesthetic::JustChopItOff => write!(f, "Just chop it off"),

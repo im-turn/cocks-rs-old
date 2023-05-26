@@ -1,6 +1,6 @@
 use crate::{CockStruct, Score, Tier, ID};
 
-/// This struct encapsulates the result of a score calculation.
+/// This struct encapsulates the result of a score calculation, [CockResult].
 /// It includes the raw score and the percentage score.
 #[derive(Debug, PartialEq, Clone)]
 pub struct CockResult {
@@ -9,7 +9,7 @@ pub struct CockResult {
 }
 
 /// This struct handles all operations related to the [CockStruct] entity.
-/// It keeps track of an identifier and the CockStruct itself.
+/// It keeps track of an identifier and the [CockStruct] itself.
 #[derive(Debug, Clone)]
 pub struct CockHandler {
     pub id: ID,
@@ -65,6 +65,7 @@ impl CockHandler {
 
 /// This implementation of [std::fmt::Display] allows a [CockHandler] to be converted to a string for easy display.
 impl std::fmt::Display for CockHandler {
+    /// Returns a string representation of the [CockHandler] variant.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let total_score = self.total_score();
         let grade = self.grade();
