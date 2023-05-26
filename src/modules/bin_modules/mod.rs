@@ -1,15 +1,6 @@
 use crate::{
-    CockStruct,
-    ID,
-    GetVariants,
-    Abnormalities,
-    Aesthetic,
-    Balls,
-    Circumcision,
-    Curvature,
-    Shape,
-    SizeType,
-    Veininess,
+    Abnormalities, Aesthetic, Balls, Circumcision, CockStruct, Curvature, GetVariants, Shape,
+    SizeType, Veininess, ID,
 };
 
 pub mod standard_prompt;
@@ -19,7 +10,7 @@ pub mod tui_prompt;
 pub struct UserData {
     pub user: ID,
     pub cock: CockStruct,
-    pub state: AppState
+    pub state: AppState,
 }
 
 impl UserData {
@@ -27,7 +18,7 @@ impl UserData {
         UserData {
             user: ID::Anonymous,
             cock: CockStruct::default(),
-            state: AppState::default()
+            state: AppState::default(),
         }
     }
 }
@@ -63,7 +54,7 @@ impl AppState {
             AppState::Shape => Shape::get_variants(),
             AppState::Size => SizeType::get_variants(),
             AppState::Veininess => Veininess::get_variants(),
-            _ => Vec::default()
+            _ => Vec::default(),
         }
     }
 

@@ -44,7 +44,11 @@ impl std::fmt::Display for ID {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             ID::Anonymous => write!(f, "Anonymous User"),
-            ID::User(user) => write!(f, "Username: {}\nDiscord name: {}", user.name, user.discord_name),
+            ID::User(user) => write!(
+                f,
+                "Username: {}\nDiscord name: {}",
+                user.name, user.discord_name
+            ),
         }
     }
 }

@@ -70,7 +70,7 @@ impl Score for Size {
                     71..=80 => 5,
                     _ => 2,
                 };
-            
+
                 let girth_score = match (self.girth * 10.0) as u32 {
                     0..=33 => 1,
                     34..=40 => 2,
@@ -80,7 +80,7 @@ impl Score for Size {
                     _ => 2,
                 };
                 length_score + girth_score
-            },
+            }
             Size {
                 size_type: SizeType::Centimeters,
                 ..
@@ -93,7 +93,7 @@ impl Score for Size {
                     176..=200 => 5,
                     _ => 1,
                 };
-        
+
                 let girth_score = match (self.girth * 10.0) as u32 {
                     0..=85 => 1,
                     86..=100 => 2,
@@ -102,11 +102,10 @@ impl Score for Size {
                     136..=155 => 5,
                     _ => 1,
                 };
-        
+
                 length_score + girth_score
-            },
+            }
         }
-    
     }
 }
 

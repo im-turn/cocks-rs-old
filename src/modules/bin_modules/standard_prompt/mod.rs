@@ -58,7 +58,7 @@ pub fn choose_from_menu(choices: Vec<String>, msg: &str) -> String {
     choices.get(selection).unwrap().to_string()
 }
 
-use crate::{FromString, GetVariants, InnerUser, Size, SizeType, ID, Curvature, Abnormalities};
+use crate::{Abnormalities, Curvature, FromString, GetVariants, InnerUser, Size, SizeType, ID};
 
 /// This function prompts the user to choose from a menu consisting of the variants of the type `T` and returns the `T` variant chosen.
 pub fn input<T: GetVariants + FromString>(message: &str) -> T {
@@ -106,7 +106,7 @@ pub fn clear_screen() {
     print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
 }
 
-use crate::{CockHandler, Shape, CockStruct};
+use crate::{CockHandler, CockStruct, Shape};
 
 /// Used to prompt a user for each necessary cock attribute and construct a CockStruct from them.
 pub fn cock_handler_build() -> CockHandler {
@@ -121,8 +121,8 @@ pub fn cock_handler_build() -> CockHandler {
                 let val = prompt("Define the shape:");
                 clear_screen();
                 Shape::Other(val)
-            },
-            _ => in_shape
+            }
+            _ => in_shape,
         }
     };
     let curvature = {
@@ -132,26 +132,26 @@ pub fn cock_handler_build() -> CockHandler {
                 let val = prompt("Define the curvature:");
                 clear_screen();
                 Curvature::Other(val)
-            },
-            _ => in_curv
+            }
+            _ => in_curv,
         }
     };
     let circumcision = input("Choose cirumcision status:");
     let veininess = input("Choose veininess level:");
     let abnormalities = {
-        let in_abnor= input("Choose cock abnormalities:");
+        let in_abnor = input("Choose cock abnormalities:");
         match in_abnor {
             Abnormalities::Major(_) => {
                 let val = prompt("Define the major abnormalities:");
                 clear_screen();
                 Abnormalities::Major(val)
-            },
+            }
             Abnormalities::Minor(_) => {
                 let val = prompt("Define the minor abnormalities:");
                 clear_screen();
                 Abnormalities::Minor(val)
             }
-            _ => in_abnor
+            _ => in_abnor,
         }
     };
 

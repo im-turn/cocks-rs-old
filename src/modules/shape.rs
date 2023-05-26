@@ -27,9 +27,7 @@ impl FromString for Shape {
         match shape {
             "Cylindrical" => Shape::Cylindrical,
             "Tapered" => Shape::Tapered,
-            "Other" => {
-                Shape::Other("".to_string())
-            }
+            "Other" => Shape::Other("".to_string()),
             _ => panic!("Invalid shape"),
         }
     }

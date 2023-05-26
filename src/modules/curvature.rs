@@ -39,9 +39,7 @@ impl FromString for Curvature {
             "Right" => Curvature::Right,
             "Upwards" => Curvature::Upwards,
             "Downwards" => Curvature::Downwards,
-            "Other" => {
-                Curvature::Other("".to_string())
-            }
+            "Other" => Curvature::Other("".to_string()),
             _ => panic!("Invalid curvature"),
         }
     }

@@ -17,10 +17,3 @@ pub trait FromString {
     /// Function to create an instance of the type implementing this trait from a string.
     fn from_string(string: &str) -> Self;
 }
-
-/// [TUIDisplay] is a trait for drawing screens within the TUI.
-/// The [TUIDisplay::draw] function takes a mutable reference to a [cursive::Cursive] instance as input and draws the screen.
-pub trait TUIDisplay {
-    /// Function to draw a screen within the TUI using the given [cursive::Cursive] instance.
-    fn draw(&self, s: &mut cursive::Cursive);
-}

@@ -47,12 +47,8 @@ impl FromString for Abnormalities {
     fn from_string(abnormality: &str) -> Abnormalities {
         match abnormality {
             "None" => Abnormalities::None,
-            "Minor" => {
-                Abnormalities::Minor("".to_string())
-            }
-            "Major" => {
-                Abnormalities::Major("".to_string())
-            }
+            "Minor" => Abnormalities::Minor("".to_string()),
+            "Major" => Abnormalities::Major("".to_string()),
             _ => panic!("Invalid abnormality"),
         }
     }

@@ -1,5 +1,6 @@
 use crate::{
-    Abnormalities, Aesthetic, Balls, Circumcision, Curvature, Inches, Shape, Size, Veininess, FromString,
+    Abnormalities, Aesthetic, Balls, Circumcision, Curvature, FromString, Inches, Shape, Size,
+    Veininess,
 };
 
 /// Struct representing detailed information about a [CockStruct]. Each property of a [CockStruct]
@@ -84,12 +85,10 @@ impl CockStruct {
         match item {
             "Major" => self.abnormalities = Abnormalities::Major(new.to_string()),
             "Minor" => self.abnormalities = Abnormalities::Minor(new.to_string()),
-            "Other" => {
-                match part {
-                    "Shape" => self.shape = Shape::Other(new.to_string()),
-                    "Curvature" => self.curvature = Curvature::Other(new.to_string()),
-                    _ => panic!("Invalid part"),
-                }
+            "Other" => match part {
+                "Shape" => self.shape = Shape::Other(new.to_string()),
+                "Curvature" => self.curvature = Curvature::Other(new.to_string()),
+                _ => panic!("Invalid part"),
             },
             _ => panic!("Invalid item"),
         }
