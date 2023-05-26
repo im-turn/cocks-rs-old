@@ -10,6 +10,7 @@ repository = "https://github.com/im-turn/penile-tier-evaluator"
 keywords = ["anatomy", "tier-list", "evaluator", "cock"]
 categories = ["command-line-utilities", "data-structures", ]
 default-run = "cock-tier"
+exclude = ["assets"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
