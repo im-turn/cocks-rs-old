@@ -15,7 +15,7 @@ use crate::{
 pub mod standard_prompt;
 pub mod tui_prompt;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct UserData {
     pub user: ID,
     pub cock: CockStruct,
@@ -32,7 +32,7 @@ impl UserData {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 pub enum AppState {
     Home,
     Id,
