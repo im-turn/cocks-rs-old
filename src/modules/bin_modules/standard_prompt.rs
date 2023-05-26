@@ -74,7 +74,9 @@ pub fn get_user() -> ID {
     let user = match user_type.as_str() {
         "Anonymous" => ID::Anonymous,
         "User" => {
+            clear_screen();
             let name = prompt("User Name:");
+            clear_screen();
             let discord_name = prompt("Discord Name:");
             ID::User(InnerUser { name, discord_name })
         }
