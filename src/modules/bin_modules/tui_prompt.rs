@@ -136,6 +136,18 @@ pub fn draw_id(siv: &mut Cursive) {
             val.state.draw(s)
         }
     });
+
+    // `j` and `k` keys for navigation
+    let select = OnEventView::new(select)
+        .on_pre_event_inner('k', |s, _| {
+            let cb = s.select_up(1);
+            Some(EventResult::Consumed(Some(cb)))
+        })
+        .on_pre_event_inner('j', |s, _| {
+            let cb = s.select_down(1);
+            Some(EventResult::Consumed(Some(cb)))
+        });
+
     siv.add_layer(Dialog::around(select).title("ID Type"));
 }
 
@@ -178,6 +190,18 @@ pub fn draw_size(siv: &mut Cursive) {
             ).title("Input Length")
         );
     });
+
+    // `j` and `k` keys for navigation
+    let select = OnEventView::new(select)
+        .on_pre_event_inner('k', |s, _| {
+            let cb = s.select_up(1);
+            Some(EventResult::Consumed(Some(cb)))
+        })
+        .on_pre_event_inner('j', |s, _| {
+            let cb = s.select_down(1);
+            Some(EventResult::Consumed(Some(cb)))
+        });
+    
     siv.add_layer(Dialog::around(select).title("Size Type"));
 }
 
@@ -192,24 +216,58 @@ pub fn draw_error(siv: &mut Cursive, error: &str) {
     )
 }
 
-
-/// todo below
-/// function should act similarly to draw_options, however,
-/// it should allow for manual input of the data when the
-/// variant selected is "Other"
 pub fn draw_manual_options(siv: &mut Cursive) {
-    // placeholder functionality
-    let val = siv.user_data::<UserData>().unwrap().clone();
+    let state = siv.user_data::<UserData>().unwrap().state.clone();
+    let options = state.options();
 
-    siv.add_layer(
-        Dialog::text(format!("{:#?}", val))
-        .button("Next", | s | {
+    let mut select = SelectView::new().h_align(HAlign::Center).autojump();
+    select.add_all_str(options);
+    select.set_on_submit(move |s, item: &str| {
+        let i = item.clone().to_string();
+        if item == "Other" || item == "Minor" || item == "Major" {
+            s.add_layer(
+                Dialog::around(
+                    cursive::views::EditView::new()
+                        .on_submit(move |s, custom_input| {
+                            let custom_option = custom_input.to_string();
+                            let mut val = s.user_data::<UserData>().unwrap().clone();
+                            val.cock.get_custom(state.as_str(), &i, &custom_option);
+                            val.state = val.state.next();
+                            s.set_user_data(val.clone());
+                            s.pop_layer();
+                            val.state.draw(s);
+                        })
+                ).title("Input Custom Option")
+            );
+        } else {
             let mut val = s.user_data::<UserData>().unwrap().clone();
+            val.cock.from_str_part(state.as_str(), item);
             val.state = val.state.next();
             s.set_user_data(val.clone());
             s.pop_layer();
-            val.state.draw(s)
+            val.state.draw(s);
+        }
+    });
+
+    // `j` and `k` keys for navigation
+    let select = OnEventView::new(select)
+        .on_pre_event_inner('k', |s, _| {
+            let cb = s.select_up(1);
+            Some(EventResult::Consumed(Some(cb)))
         })
-        .button("Finish", Cursive::quit)
-    )
+        .on_pre_event_inner('j', |s, _| {
+            let cb = s.select_down(1);
+            Some(EventResult::Consumed(Some(cb)))
+        });
+
+    siv.add_layer(Dialog::around(
+        select.scrollable().fixed_size((40, 20))).title(state.as_str())
+        .button("Prev", | s | {
+            let mut val = s.user_data::<UserData>().unwrap().clone();
+            val.state = val.state.prev();
+            s.set_user_data(val.clone());
+            s.pop_layer();
+            val.state.draw(s);
+        })
+    );
 }
