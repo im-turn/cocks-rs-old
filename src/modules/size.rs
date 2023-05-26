@@ -1,7 +1,7 @@
 use crate::{FromString, GetVariants, Score};
 
 /// [SizeType] is an enum that represents the type of size.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum SizeType {
     Centimeters,
     Inches,
