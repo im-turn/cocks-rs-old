@@ -42,8 +42,8 @@ impl FromString for ID {
 impl std::fmt::Display for ID {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            ID::Anonymous => write!(f, "Anonymous"),
-            ID::User(user) => write!(f, "User: {}, Discord: {}", user.name, user.discord_name),
+            ID::Anonymous => write!(f, "Anonymous User"),
+            ID::User(user) => write!(f, "Username: {}\nDiscord name: {}", user.name, user.discord_name),
         }
     }
 }
