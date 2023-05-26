@@ -3,7 +3,8 @@ use cursive::{Cursive, views::{Dialog, SelectView, OnEventView}, align::HAlign, 
 use crate::{
     TUIDisplay, GetVariants,
     bin_modules::AppState,
-    CockHandler, ID, InnerUser, modules::user
+    CockHandler, ID, InnerUser,
+    Size, SizeType, FromString
 };
 
 use super::UserData;
@@ -138,29 +139,59 @@ pub fn draw_id(siv: &mut Cursive) {
     siv.add_layer(Dialog::around(select).title("ID Type"));
 }
 
-/// todo below
-/// function should act similarly to draw_options, however,
-/// it should allow for manual input of the data after selecting
-/// the `SizeType` which should be either `Inches` or `Centimeters`.
-/// The use should then be prompted for the data in the form of a
-/// float, which should then be stored in the UserData struct under
-/// the `cock` field using
 pub fn draw_size(siv: &mut Cursive) {
-    // placeholder functionality
-    let val = siv.user_data::<UserData>().unwrap().clone();
+    let options = SizeType::get_variants();
+    let mut select = SelectView::new().h_align(HAlign::Center).autojump();
+    select.add_all_str(options);
+    select.set_on_submit(move |s: &mut Cursive, item: &str| {
+        let size_type = SizeType::from_string(item);
+        s.pop_layer();
+        s.add_layer(
+            Dialog::around(
+                cursive::views::EditView::new()
+                    .on_submit(move |s, length_input| {
+                        let length = length_input.parse();
+                        if length.is_err() {
+                            s.pop_layer();
+                            draw_error(s, "Please enter a valid number for length. (e.g. 5.5, 4, 3.1415)");
+                            return;
+                        }
+                        let length: f32 = length.unwrap();
+                        s.add_layer(
+                            Dialog::around(
+                                cursive::views::EditView::new()
+                                    .on_submit(move |s, girth_input| {
+                                        let girth: f32 = girth_input.parse().expect("Please enter a valid number for girth. (e.g. 5.5, 4, 3.1415)");
+                                        let mut val = s.user_data::<UserData>().unwrap().clone();
+                                        match size_type {
+                                            SizeType::Centimeters => val.cock.size = Size::from_cm(length, girth),
+                                            SizeType::Inches => val.cock.size = Size::from_in(length, girth),
+                                        };
+                                        val.state = val.state.next();
+                                        s.set_user_data(val.clone());
+                                        s.pop_layer();
+                                        val.state.draw(s);
+                                    })
+                            ).title("Input Girth")
+                        );
+                    })
+            ).title("Input Length")
+        );
+    });
+    siv.add_layer(Dialog::around(select).title("Size Type"));
+}
 
+pub fn draw_error(siv: &mut Cursive, error: &str) {
     siv.add_layer(
-        Dialog::text(format!("{:#?}", val))
-        .button("Next", | s | {
-            let mut val = s.user_data::<UserData>().unwrap().clone();
-            val.state = val.state.next();
-            s.set_user_data(val.clone());
+        Dialog::text(error)
+        .button("Ok", | s | {
+            let val = s.user_data::<UserData>().unwrap().clone();
             s.pop_layer();
             val.state.draw(s)
         })
-        .button("Finish", Cursive::quit)
     )
 }
+
 
 /// todo below
 /// function should act similarly to draw_options, however,
