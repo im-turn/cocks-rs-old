@@ -70,6 +70,21 @@ impl CockStruct {
             _ => panic!("Invalid part"),
         }
     }
+
+    pub fn get_custom(&mut self, part: &str, item: &str, new: &str) {
+        match item {
+            "Major" => self.abnormalities = Abnormalities::Major(new.to_string()),
+            "Minor" => self.abnormalities = Abnormalities::Minor(new.to_string()),
+            "Other" => {
+                match part {
+                    "Shape" => self.shape = Shape::Other(new.to_string()),
+                    "Curvature" => self.curvature = Curvature::Other(new.to_string()),
+                    _ => panic!("Invalid part"),
+                }
+            },
+            _ => panic!("Invalid item"),
+        }
+    }
 }
 
 /// This implementation of [std::fmt::Display] allows a [CockStruct] to be converted to a string for easy display.
