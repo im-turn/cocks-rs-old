@@ -72,6 +72,12 @@ let score = handler.total_score().score; // Returns 48.0
 let percentage = handler.total_score().percentage; // Returns 68.571434
 ```
 
+## Dependencies
+
+The `tui` executable for cock-tier is rendered using [Cursive](https://crates.io/crates/cursive).
+
+[Cursive](https://crates.io/crates/cursive) also requires the `ncurses` lib to be installed on the machine.
+
 ## Testing :petri_dish: :test_tube:
 
 This library comes with a built-in test suite that verifies the functionality of the code. To run the tests, use the command `cargo test` in the project's root directory.
