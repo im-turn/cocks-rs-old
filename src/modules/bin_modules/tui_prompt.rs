@@ -100,6 +100,7 @@ pub fn draw_id(siv: &mut Cursive) {
     let mut select = SelectView::new().h_align(HAlign::Center).autojump();
     select.add_all_str(options);
     select.set_on_submit(move |s: &mut Cursive, item: &str| {
+        s.pop_layer();
         if item == "User" {
             s.add_layer(
                 Dialog::around(
@@ -169,11 +170,19 @@ pub fn draw_size(siv: &mut Cursive) {
                             return;
                         }
                         let length: f32 = length.unwrap();
+                        s.pop_layer();
                         s.add_layer(
                             Dialog::around(
                                 cursive::views::EditView::new()
                                     .on_submit(move |s, girth_input| {
-                                        let girth: f32 = girth_input.parse().expect("Please enter a valid number for girth. (e.g. 5.5, 4, 3.1415)");
+                                        let girth = girth_input.parse();
+                                        if girth.is_err() {
+                                            s.pop_layer();
+                                            draw_error(s, "Please enter a valid number for girth. (e.g. 5.5, 4, 3.1415)");
+                                            return;
+                                        }
+                                        let girth: f32 = girth.unwrap();
+                                        s.pop_layer();
                                         let mut val = s.user_data::<UserData>().unwrap().clone();
                                         match size_type {
                                             SizeType::Centimeters => val.cock.size = Size::from_cm(length, girth),
