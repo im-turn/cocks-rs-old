@@ -24,8 +24,11 @@ Want to see where you stand in the land of peen, but you're kinda a dummy?! Luck
 To use the default cli based binary, just run `cargo run` or `cargo run --bin cock-tier` from your terminal and follow the prompts. It's very straight-forward tbh. The program will ask you a series of questions about the cock in question, once the questions have run their course you get a comprehensive breakdown complete with a final grade.
 
 Other binaries available include:
-- tui: a terminal user interface that operates similarly to the default cli binary. The user interface is produced using the `cursive` rust crate which acts as a ncurses wrapper for rust. To run this binary use the command `cargo run --bin tui`. This is incomplete and should not be used for regular functionality at the moment, the defualt cli bin is what you should use for now.
-- TODO
+
+- tui: a terminal user interface that operates similarly to the default cli binary. The user interface is produced using the `cursive` rust crate which acts as a ncurses wrapper for rust. To run this binary use the command `cargo run --bin tui`. Still a work in progress, but should be somewhat functional. Below is a small demonstation
+
+![tui-demo](/assets/tui-demo.gif)
+
 
 ### The API
 
