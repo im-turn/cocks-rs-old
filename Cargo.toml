@@ -1,14 +1,14 @@
 [package]
 name = "cock-tier"
-version = "0.2.3"
+version = "1.0.0"
 edition = "2021"
 authors = ["turn"]
 description = "Measure the power level of a peen."
 readme = "README.md"
 license = "MIT"
-repository = "https://github.com/im-turn/penile-tier-evaluator"
-keywords = ["anatomy", "tier-list", "evaluator", "cock"]
-categories = ["command-line-utilities", "data-structures", ]
+repository = "https://github.com/im-turn/cocks-rs"
+keywords = ["anatomy", "tier-list", "evaluator", "cock", "penis"]
+categories = ["command-line-utilities", "data-structures"]
 default-run = "cock-tier"
 exclude = ["assets"]
 
